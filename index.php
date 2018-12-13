@@ -1,6 +1,5 @@
 <?php
-    include("include/init-db.php");
-    include("include/init-session.php");
+    include("includes/init-session.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +10,9 @@
     <title>Stenden Helpdesk</title>
 </head>
 <body>
-    
+    <?php
+        include("includes/init-db.php");
+    ?>
+    main body
 </body>
 </html>
