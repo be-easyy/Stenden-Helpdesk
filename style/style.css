@@ -1,0 +1,29 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	
+}
+
+.page{
+	position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    border: 15px solid orange;
+    background-color: #f2f2f2;
+}
+
+.mid_box{
+	background-color: #999999;
+	border-radius: 3px;
+	width: 50%;
+	height: 70%;
+	margin: 7% auto;
+}
+
+.mid_box_margin{
+	margin:	5%;
+
+}
+
