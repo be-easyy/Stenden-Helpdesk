@@ -10,11 +10,11 @@
     <title>Login - Stenden Helpdesk</title>
 </head>
 <body>
-    <div class="page">
+    <div class="login_page">
 		<div class="mid_box">
 			<div class="mid_box_margin">
 				<div class="mid_box_margin_logo">
-					<img src="img/" alt="Logo">
+					<img id="logo" src="img/logo.png" alt="Logo">
 				</div>
 				<div class="mid_box_margin_form">
 					<form action="" method="POST">
