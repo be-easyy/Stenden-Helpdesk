@@ -13,13 +13,10 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <ul>
-                    <li><a class="open" href="">Open ticket</a></li>
-                    <li><a href="">Ticket history</a></li>
-                    <li><a href="">Overview</a></li>
-                    <li><a href="">Your tickets</a></li>
-                    <li><a href="">FAQ</a></li>
-                </ul>
+                <a class="open" href="#">Home</a> 
+                <a href="#">Search</a> 
+                <a href="#">Contact</a> 
+                <a href="#">Login</a>
             </div>
         </div>
 
