@@ -13,8 +13,8 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a class="open" href="#">New Ticket</a> 
-                <a href="#">Ticket History</a> 
+                <a class="open" href="user.php">New Ticket</a> 
+                <a class="onpage"   href="history.php">Ticket History</a> 
                 <a href="#">Overview</a> 
                 <a href="#">Your Tickets</a>
                 <a href="">FAQ</a>
@@ -24,7 +24,42 @@
 
         <div class="content">
             <div class="content_margin">
-                
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Ticket Nr.</th>
+                        <th>Subject</th>
+                        <th>Creator</th>
+                    </tr>
+
+                    <tr>
+                        <td>Updog</td>
+                        <td>Bofa</td>
+                        <td>Sugma</td>
+                        <td>Hoponma</td>
+                    </tr>
+
+                    <tr>
+                        <td>Updog</td>
+                        <td>Bofa</td>
+                        <td>Sugma</td>
+                        <td>Hoponma</td>
+                    </tr>
+
+                    <tr>
+                        <td>Updog</td>
+                        <td>Bofa</td>
+                        <td>Sugma</td>
+                        <td>Hoponma</td>
+                    </tr>
+
+                    <tr>
+                        <td>Updog</td>
+                        <td>Bofa</td>
+                        <td>Sugma</td>
+                        <td>Hoponma</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

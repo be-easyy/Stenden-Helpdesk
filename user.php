@@ -13,8 +13,8 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a class="open" href="#">New Ticket</a> 
-                <a href="#">Ticket History</a> 
+                <a class="open" href="user.php">New Ticket</a> 
+                <a href="history.php">Ticket History</a> 
                 <a href="#">Overview</a> 
                 <a href="#">Your Tickets</a>
                 <a href="">FAQ</a>
