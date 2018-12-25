@@ -13,10 +13,11 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a class="open" href="#">Home</a> 
-                <a href="#">Search</a> 
-                <a href="#">Contact</a> 
-                <a href="#">Login</a>
+                <a class="open" href="#">New Ticket</a> 
+                <a href="#">Ticket History</a> 
+                <a href="#">Overview</a> 
+                <a href="#">Your Tickets</a>
+                <a href="">FAQ</a>
             </div>
         </div>
 
@@ -42,10 +43,15 @@
                         <label for="short_right">Licence</label>
                         <input type="text" id="short_right" name="licence">
                     </div>
-                    <label for="long_text">Description</label>
-                    <textarea id="long_text" name="description" placeholder="Describe your issue.."></textarea>
+                    <label for="textarea">Description</label>
+                    <textarea id="textarea" name="description" placeholder="Describe your issue.."></textarea>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer_margin">
         </div>
     </div>
 </div>
