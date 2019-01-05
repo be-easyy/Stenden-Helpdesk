@@ -62,6 +62,12 @@ form label{
 	font-size: 1.17em;
 }
 
+.login_input{
+	width: 50px;
+	height: 25px;
+	padding-left: 5px;
+}
+
 .form-50_left{
 	float: left;
 	width: 49%;
