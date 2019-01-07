@@ -1,7 +1,7 @@
 <?php
     $Host = "localHost";
     $User = "root";
-    $Pass = "rabbit"; // TODO change me if necessary
+    $Pass = ""; // TODO change me if necessary
     $Database = "SupportDesk";
     $SQLConnect = mysqli_connect($Host, $User, $Pass);
     if(!$SQLConnect) {

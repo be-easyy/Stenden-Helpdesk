@@ -62,6 +62,12 @@ form label{
 	font-size: 1.17em;
 }
 
+.login_input{
+	width: 50px;
+	height: 25px;
+	padding-left: 5px;
+}
+
 .form-50_left{
 	float: left;
 	width: 49%;
@@ -215,3 +221,37 @@ input:focus {
 }
 
 /*login page END*/
+
+/*FAQ page START*/
+
+.headerfaq {
+	text-align: center;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	padding-bottom: 15px;
+}
+
+.accordion {
+	background-color: #f3f3f3;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+  }
+  
+  .active, .accordion:hover {
+	background-color: #555; 
+	color: white;
+  }
+  
+  .panel {
+	padding: 0 18px;
+	display: none;
+	background-color: #f3f3f3;
+	overflow: hidden;
+  }
+/*FAQ page END*/
