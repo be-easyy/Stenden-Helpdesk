@@ -20,8 +20,8 @@
             <div class="navbar">
                 <a href="input_ticket.php">New Ticket</a> 
                 <a href="history.php">Ticket History</a> 
-                <a class="open" href="overview.php">Overview</a> 
-                <a href="adminpanel.php">Admin Panel</a>
+                <a href="overview_client.php">Overview</a> 
+                <a class="open" href="client_tickets.php">Your Tickets</a>
                 <a href="faq.html">FAQ</a>
             </div>
         </div>

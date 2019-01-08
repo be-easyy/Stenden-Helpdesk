@@ -44,14 +44,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         
         $count = mysqli_num_rows($result);
-
+        
         if($count == 1) {
             $_SESSION['login_user'] = $user;
             
             header("location: overview_client.php");
             exit();
         } else {
-            header("location: error.php");
+            echo "The username and password you entered did not match our records. Please double-check and try again.";
             exit();
         }
      }

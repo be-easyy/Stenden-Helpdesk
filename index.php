@@ -2,6 +2,7 @@
     include("includes/init-db.php");
     include("includes/init-session.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,3 +35,5 @@
 	</div>
 </body>
 </html>
+
+

@@ -71,7 +71,6 @@
             } else {
                 echo "<h1>Thank you for submitting your ticket!</h1>";
             }
-            //Clean up the $stmt after use
             mysqli_stmt_close($stmt);
         } else {
             echo "error";
