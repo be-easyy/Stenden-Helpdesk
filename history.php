@@ -13,11 +13,11 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a class="open" href="user.php">New Ticket</a> 
-                <a class="onpage"   href="history.php">Ticket History</a> 
-                <a href="#">Overview</a> 
-                <a href="#">Your Tickets</a>
-                <a href="">FAQ</a>
+                    <a href="input_ticket.php">New Ticket</a> 
+                    <a class="open" href="history.php">Ticket History</a> 
+                    <a href="overview_client.php">Overview</a> 
+                    <a href="#">Your Tickets</a>
+                    <a href="faq.html">FAQ</a>
             </div>
         </div>
 

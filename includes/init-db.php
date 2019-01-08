@@ -33,8 +33,8 @@
                 `Description` varchar(280) NOT NULL,
                 `Type_ID` INT NOT NULL,
                 `Other` varchar(30),
-                `Solution_ID` INT NOT NULL,
-                `Employee_ID` INT NOT NULL,
+                `Solution_ID` INT,
+                `Employee_ID` INT,
                 PRIMARY KEY (`Incident_ID`,`Time_Registered`)
             );",
             "CREATE TABLE `Type` (
@@ -42,7 +42,7 @@
                 `Type_Name` varchar(30) NOT NULL,
                 PRIMARY KEY (`Type_ID`)
             );",
-            "CREATE TABLE `Employees` (
+            "CREATE TABLE `Employee` (
                 `Employee_ID` INT NOT NULL AUTO_INCREMENT,
                 `Employee_Name` varchar(30) NOT NULL,
                 `Employee_Image` varchar(30) NOT NULL,
@@ -65,7 +65,7 @@
             "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk0` FOREIGN KEY (`Client_ID`) REFERENCES `Client`(`Client_ID`);",
             "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk1` FOREIGN KEY (`Type_ID`) REFERENCES `Type`(`Type_ID`);",
             "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk2` FOREIGN KEY (`Solution_ID`) REFERENCES `Solution`(`Solution_ID`);",
-            "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk3` FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`);"
+            "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk3` FOREIGN KEY (`Employee_ID`) REFERENCES `Employee`(`Employee_ID`);"
         );
         
         foreach ($queries as $SQLQuery) {
@@ -78,5 +78,33 @@
             }
         }
     }
+
+    $queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'admin'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+        $pass = md5("admin");
+
+        $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
+        VALUES ('admin',
+        'http://picsum.photos/192/192?random',
+        '$pass',
+        '0')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Client` WHERE `Client_Name` = 'dummy'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+        $pass = md5("dummy");
+        
+        $query = "INSERT INTO `Client` (Client_Name, Client_Pass, Client_License)
+        VALUES ('dummy',
+        '$pass',
+        '0')";
+
+        $SQLConnect->query($query);
+    }
+
     mysqli_close($SQLConnect);
 ?>

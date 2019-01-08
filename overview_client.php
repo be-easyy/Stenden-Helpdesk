@@ -18,11 +18,11 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a href="#">New Ticket</a> 
-                <a href="#">Ticket History</a> 
-                <a class="open" href="#">Overview</a> 
+                <a href="input_ticket.php">New Ticket</a> 
+                <a href="history.php">Ticket History</a> 
+                <a class="open" href="overview_client.php">Overview</a> 
                 <a href="#">Your Tickets</a>
-                <a href="">FAQ</a>
+                <a href="faq.html">FAQ</a>
             </div>
         </div>
         <div class="content">

@@ -15,8 +15,8 @@
             </div>
             <div class="navbar">
                 <a class="open" href="input_ticket.php">New Ticket</a> 
-                <a href="#">Ticket History</a> 
-                <a href="overview_client">Overview</a> 
+                <a href="history.php">Ticket History</a> 
+                <a href="overview_client.php">Overview</a> 
                 <a href="#">Your Tickets</a>
                 <a href="faq.html">FAQ</a>
             </div>
@@ -42,38 +42,41 @@
 </html>
 
 <?php
-        if (empty($_POST['desc']) || empty($_POST['type'])) {
-            echo "<p>You must fill in all the required elements.
-                Click your browser's back button to return to the message form.</p>";
-        } else {
-            include ("includes/init-db.php");
+    if(!isset($_POST['submit']))
+        return;
+    
+    if (empty($_POST['desc']) || empty($_POST['type'])) {
+        echo "<p>You must fill in all the required elements.
+            Click your browser's back button to return to the message form.</p>";
+    } else {
+        include ("includes/init-db.php");
 
-            mysqli_select_db($DBConnect, $db_name);
+        mysqli_select_db($DBConnect, $db_name);
 
-            $desc = htmlentities($_POST['name']);
-            $type = htmlentities($_POST['message']);
+        $desc = htmlentities($_POST['name']);
+        $type = htmlentities($_POST['message']);
 
-            $SQLstring2 = "INSERT INTO incident (Incident_ID, Time_Registered, Client_ID, Date, Description, Type_ID, Other, Solution_ID, Employee_ID) VALUES (NULL, CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
+        $SQLstring2 = "INSERT INTO incident (Incident_ID, Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (NULL, CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
 
-            if ($stmt = mysqli_prepare($DBConnect, $SQLstring2)) {
-                mysqli_stmt_bind_param($stmt, 'ss', $desc, $type);
-                $QueryResult2 = mysqli_stmt_execute($stmt);
-                if ($QueryResult2 === FALSE) {
-                    echo "<p>Unable to execute the query.</p>"
-                    . "<p>Error code "
-                    . mysqli_errno($DBConnect)
-                    . ": "
-                    . mysqli_error($DBConnect)
-                    . "</p>";
-                } else {
-                    echo "<h1>Thank you for submitting your ticket!</h1>";
-                }
-                //Clean up the $stmt after use
-                mysqli_stmt_close($stmt);
+        if ($stmt = mysqli_prepare($DBConnect, $SQLstring2)) {
+            mysqli_stmt_bind_param($stmt, 'ss', $desc, $type);
+            $QueryResult2 = mysqli_stmt_execute($stmt);
+            if ($QueryResult2 === FALSE) {
+                echo "<p>Unable to execute the query.</p>"
+                . "<p>Error code "
+                . mysqli_errno($DBConnect)
+                . ": "
+                . mysqli_error($DBConnect)
+                . "</p>";
             } else {
-                echo "error";
+                echo "<h1>Thank you for submitting your ticket!</h1>";
             }
-            mysqli_close($DBConnect);
+            //Clean up the $stmt after use
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "error";
         }
-        ?>
+        mysqli_close($DBConnect);
+    }
+?>
 

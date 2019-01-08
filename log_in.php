@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $Host = "localHost";
+    $Host = "localhost";
     $User = "root";
     $Pass = ""; // TODO change me if necessary
     $Database = "SupportDesk";
@@ -27,27 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $pass = $_POST["pass"];
     $hash = md5($pass);
 
-    $sql = "SELECT Employee_ID FROM Employees WHERE Employee_Name = '$user' Employee_Pass = '$hash'";
+    $sql = "SELECT Employee_ID FROM Employee WHERE Employee_Name = '$user' AND Employee_Pass = '$hash'";
     $result = mysqli_query($SQLConnect, $sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-        session_register($user);
         $_SESSION['login_user'] = $user;
         
         header("location: overview.php");
         exit();
      }else {
-        $sql = "SELECT * FROM Client WHERE Client_Name = '$user' Client_Pass = '$hash'";
+        $sql = "SELECT * FROM Client WHERE Client_Name = '$user' AND Client_Pass = '$hash'";
         $result = mysqli_query($SQLConnect, $sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         
         $count = mysqli_num_rows($result);
 
         if($count == 1) {
-            session_register($user);
             $_SESSION['login_user'] = $user;
             
             header("location: overview_client.php");
