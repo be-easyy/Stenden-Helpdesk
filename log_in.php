@@ -1,4 +1,6 @@
 <?php
+include "./includes/init-db.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $Host = "localhost";
@@ -35,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if($count == 1) {
         $_SESSION['login_user'] = $user;
-        
+        /* TODO set a cookie/session variable to employee */
         header("location: overview.php");
         exit();
      }else {
@@ -47,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         
         if($count == 1) {
             $_SESSION['login_user'] = $user;
-            
+            /* TODO set a cookie/session variable to user */
             header("location: overview_client.php");
             exit();
         } else {

@@ -1,3 +1,9 @@
+<?php
+    include("./includes/init-db.php");
+    include("./includes/init-session.php");
+    include("./includes/check-login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
