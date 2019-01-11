@@ -2,6 +2,7 @@
     include("./includes/init-db.php");
     include("./includes/init-session.php");
     include("./includes/check-login.php");
+    CheckAny();
 ?>
 
 <!DOCTYPE html>

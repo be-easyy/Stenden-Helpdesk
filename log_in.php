@@ -1,5 +1,6 @@
 <?php
 include "./includes/init-db.php";
+include "./includes/init-session.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -36,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-        $_SESSION['login_user'] = $user;
-        /* TODO set a cookie/session variable to employee */
+        $_SESSION["log_user"] = md5($user);
+        $_SESSION["log_type"] = 1;
         header("location: overview.php");
         exit();
      }else {
@@ -48,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $count = mysqli_num_rows($result);
         
         if($count == 1) {
-            $_SESSION['login_user'] = $user;
-            /* TODO set a cookie/session variable to user */
+            $_SESSION["log_user"] = md5($user);
+            $_SESSION["log_type"] = 2;
             header("location: overview_client.php");
             exit();
         } else {
