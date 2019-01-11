@@ -122,6 +122,7 @@ form label{
 	font-size: 19px;
 	width: 16%;
 	text-align: center;
+	transition-duration: 400ms;
   }
   
   .navbar a:hover {
@@ -203,8 +204,9 @@ input {
 	padding: 10px;
 	border: none;
 	box-shadow: 0 2px 16px #00000040;
-	transition-duration: 200ms;
+	transition-duration: 400ms;
 	margin: 6px;
+	border-radius: 8px;
 }
 
 #input{
@@ -214,13 +216,13 @@ input {
 }
 
 #submit{
-	border-radius: 2px;
+	border-radius: 8px;
 }
 
-
+input:hover,
 input:focus {
 	outline: none;
-	box-shadow: 0 2px 24px #00000080;
+	box-shadow: 0 2px 16px #00000080;
 }
 /*login page END*/
 
