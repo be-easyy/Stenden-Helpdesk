@@ -63,7 +63,7 @@
         $desc = htmlentities($_POST['name']);
         $type = htmlentities($_POST['message']);
 
-        $SQLstring2 = "INSERT INTO incident (Incident_ID, Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (NULL, CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
+        $SQLstring2 = "INSERT INTO incident (Incident_ID, Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (DEFAULT, CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
 
         if ($stmt = mysqli_prepare($DBConnect, $SQLstring2)) {
             mysqli_stmt_bind_param($stmt, 'ss', $desc, $type);

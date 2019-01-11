@@ -27,14 +27,14 @@
         $queries = array(
             "CREATE TABLE `Incident` (
                 `Incident_ID` INT NOT NULL,
-                `Time_Registered` TIME NOT NULL,
                 `Client_ID` INT NOT NULL,
+                `Time_Registered` TIME NOT NULL,
                 `Date` DATE NOT NULL,
                 `Description` varchar(280) NOT NULL,
                 `Type_ID` INT NOT NULL,
-                `Other` varchar(30),
                 `Solution_ID` INT,
                 `Employee_ID` INT,
+                `Status` TINYINT,
                 PRIMARY KEY (`Incident_ID`,`Time_Registered`)
             );",
             "CREATE TABLE `Type` (
@@ -79,6 +79,8 @@
         }
     }
 
+    // Create employee accounts
+
     $queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'admin'";
     $res = $SQLConnect->query($queryy);
     if($res->num_rows != 1) {
@@ -102,6 +104,70 @@
         VALUES ('dummy',
         '$pass',
         '0')";
+
+        $SQLConnect->query($query);
+    }
+
+    // Create type IDs
+
+    $queryy = "SELECT * FROM `Type` WHERE `Type_ID` = '1'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Type` (Type_ID, Type_Name)
+        VALUES ('1','Technical Problem')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Type` WHERE `Type_ID` = '2'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Type` (Type_ID, Type_Name)
+        VALUES ('2','Functional Problem')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Type` WHERE `Type_ID` = '3'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Type` (Type_ID, Type_Name)
+        VALUES ('3','Failure')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Type` WHERE `Type_ID` = '4'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Type` (Type_ID, Type_Name)
+        VALUES ('4','Question')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Type` WHERE `Type_ID` = '5'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Type` (Type_ID, Type_Name)
+        VALUES ('5','Wish')";
+
+        $SQLConnect->query($query);
+    }
+
+    // Create solution IDs
+
+    $queryy = "SELECT * FROM `Solution` WHERE `Solution_ID` = '1'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `Solution` (Solution_ID, Solution_Description)
+        VALUES ('1','Some Solution')";
 
         $SQLConnect->query($query);
     }
