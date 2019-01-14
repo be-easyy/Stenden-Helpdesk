@@ -109,27 +109,25 @@ if ($res->num_rows != 1) {
     $SQLConnect->query($query);
 }
 
-        $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
+$query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
         VALUES ('employee1',
         'http://picsum.photos/192/192?random',
         '$pass',
         '2')";
-         }
-        
-    $queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'employee2'";
-    $res = $SQLConnect->query($queryy);
-    if($res->num_rows != 1)
-        {
-        $pass = md5("qwerty");
 
-        $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
+$queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'employee2'";
+$res = $SQLConnect->query($queryy);
+if ($res->num_rows != 1) {
+    $pass = md5("qwerty");
+
+    $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
         VALUES ('employee2',
         'http://picsum.photos/192/192?random',
         '$pass',
         '2')";
-        }
+}
 
-        $SQLConnect->query($query);
+$SQLConnect->query($query);
 
     // Create type IDs
 
@@ -223,7 +221,7 @@ function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
     if (!ValidateTable($table, $fields)) {
         return false;
     }
-    if(count($fields) != count($values)) {
+    if (count($fields) != count($values)) {
         echo "InsertDBStatement:::FIELDS AND VALUES MUST BE THE SAME NUMBER";
         return false;
     }
@@ -233,7 +231,7 @@ function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
     $inserts = array();
     $counter = 1;
     foreach ($values as $value) {
-        if($value == "CURRENT_TIME") {
+        if ($value == "CURRENT_TIME") {
             $SQLQuery .= "CURRENT_TIME";
         } elseif ($value == "CURRENT_DATE") {
             $SQLQuery .= "CURRENT_DATE";
@@ -244,14 +242,14 @@ function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
             array_push($inserts, $value);
         }
 
-        if($counter != count($values))
+        if ($counter != count($values))
             $SQLQuery .= ", ";
         $counter++;
     }
 
     $SQLQuery .= ");";
 
-    if($stmt = $SQLConnect->prepare($SQLQuery)) {
+    if ($stmt = $SQLConnect->prepare($SQLQuery)) {
         $stmt->bind_param($types, ...$inserts);
         return $stmt;
     } else {
@@ -260,14 +258,15 @@ function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
 
 }
 
-function ArrayToFields($fields) {
+function ArrayToFields($fields)
+{
     $start = "(";
     $main = "";
     $end = ") VALUES (";
     $counter = 1;
     foreach ($fields as $field) {
         $main .= $field;
-        if($counter != count($fields))
+        if ($counter != count($fields))
             $main .= ", ";
         $counter++;
     }
@@ -281,13 +280,14 @@ function ValidateTable($table, $fields)
 
     $selected = "";
     foreach ($_TABLES as $value)
-        if ($value == $table) 
-            return ValidateFields($table, $fields);
+        if ($value == $table)
+        return ValidateFields($table, $fields);
     echo "ValidateTable:::TABLE (" . $table . ") CANNOT BE VALIDATED";
     return false;
 }
 
-function ValidateFields($table, $fields) {
+function ValidateFields($table, $fields)
+{
     $incident = array('Incident_ID', 'Client_ID', 'Time_Registered', 'Date', 'Description', 'Type_ID', 'Solution_ID', 'Employee_ID', 'Status');
     $type = array('Type_ID', 'Type_Name');
     $employee = array('Employee_ID', 'Employee_Name', 'Employee_Image', 'Employee_Pass', 'Employee_Permission');
@@ -300,12 +300,12 @@ function ValidateFields($table, $fields) {
 
     foreach ($fields as $field) {
         $validated = false;
-        foreach ($_selected as $_field){
-            if($field == $_field){
+        foreach ($_selected as $_field) {
+            if ($field == $_field) {
                 $validated = true;
             }
         }
-        if(!$validated) {
+        if (!$validated) {
             echo "ValidateFields:::FIELD (" . $field . ") CANNOT BE VALIDATED";
             return false;
         }
@@ -313,7 +313,8 @@ function ValidateFields($table, $fields) {
     return true;
 }
 
-function DisplayDBError($SQLConnect) {
+function DisplayDBError($SQLConnect)
+{
     echo "<p>Unable to execute the query.</p>"
         . "<p>Error "
         . $SQLConnect->errno
