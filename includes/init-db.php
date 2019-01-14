@@ -107,6 +107,34 @@
 
         $SQLConnect->query($query);
     }
+    
+    $queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'employee1'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) 
+        {
+        $pass = md5("qwerty");
+
+        $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
+        VALUES ('employee1',
+        'http://picsum.photos/192/192?random',
+        '$pass',
+        '2')";
+         }
+        
+    $queryy = "SELECT * FROM `Employee` WHERE `Employee_Name` = 'employee2'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1)
+        {
+        $pass = md5("qwerty");
+
+        $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
+        VALUES ('employee2',
+        'http://picsum.photos/192/192?random',
+        '$pass',
+        '2')";
+        }
+
+        $SQLConnect->query($query);
 
     // Create type IDs
 
