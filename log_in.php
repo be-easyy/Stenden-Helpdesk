@@ -10,15 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $Database = "SupportDesk";
     $SQLConnect = mysqli_connect($Host, $User, $Pass);
     if(!$SQLConnect) {
-        echo mysqli_error($SQLConnect);
+        echo $SQLConnect->error;
         return;
     }
     $DBBool = mysqli_select_db($SQLConnect, $Database);
     if(!$DBBool) {
-        echo mysqli_error($SQLConnect);
+        echo $SQLConnect->error;
         $SQLQuery = "CREATE DATABASE SupportDesk";
-        $stmt = mysqli_prepare($SQLConnect, $SQLQuery);
-        mysqli_execute($stmt);
+        $stmt = $SQLConnect->prepare($SQLQuery);
+        $stmt->execute();
     }
     $DBBool = mysqli_select_db($SQLConnect, $Database);
     if(!$DBBool) {

@@ -46,7 +46,7 @@ if (!$SQLConnect) {
         echo "<p>There are no entries!</p>";
     } else {
         $TableName = "incident";
-        $SQLstring = "SELECT * FROM ". $TableName;
+        $SQLstring = "SELECT * FROM 'Incident' WHERE `Status` = '0'";
         if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
             mysqli_stmt_execute($stmt);
             mysqli_stmt_bind_result($stmt, $incidentid, $client, $time, $date, $desc, $type, $solution, $employee, $status);
@@ -54,7 +54,6 @@ if (!$SQLConnect) {
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 echo "<p>There are no tickets in your name!</p>";
             } else {
-                if ($status = 0){
                 echo "<table>";
                 echo "<tr><th>Incident</th> <th>Time</th> <th>Client</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee</th></tr>";
                 while (mysqli_stmt_fetch($stmt)) {
@@ -67,7 +66,7 @@ if (!$SQLConnect) {
                     echo "<td>" . $solution . "</td>";
                     echo "<td>" . $employee . "</td></tr>";
                 }
-                }
+                echo "</table>";
             }
             mysqli_stmt_close($stmt);
         }

@@ -79,6 +79,7 @@ function CheckLogin($table, $name)
                 if ($value == md5($_SESSION["log_user"]))
                     return true;
             }
+            $tmp_stmt->close();
             // user has not been found in the database
             if(!$debug) {
                 deleteSession();
@@ -95,6 +96,7 @@ function CheckLogin($table, $name)
             }
             echo "wrong SQL statement";
         }
+        $tmp_connection->close();
     } else {
         // user is not set in session
         // $_SESSION["log_user"]
