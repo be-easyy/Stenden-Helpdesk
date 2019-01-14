@@ -303,4 +303,41 @@ input:focus {
 	background-color: #f3f3f3;
 	overflow: hidden;
   }
+
+  textarea,
+  select {
+	padding: 10px;
+	border: none;
+	box-shadow: 0 2px 16px #00000040;
+	transition-duration: 400ms;
+	margin: 6px;
+	border-radius: 8px;
+  }
+
+  textarea {
+	  width: 50%;
+	  height: 5em;
+	  resize: none;
+  }
+
+  select:hover,
+  select:focus,
+  textarea:hover,
+  textarea:focus {
+	outline: none;
+	box-shadow: 0 2px 16px #00000080;
+  }
+
+  option {
+	  padding: 10px;
+  }
+
+  input[type="submit"] {
+	  background-color: #eee;
+  }
+
+  input[type="submit"]:hover {
+	  background-color: #ccc;
+  }
+
 /*FAQ page END*/

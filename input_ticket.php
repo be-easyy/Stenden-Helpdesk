@@ -32,8 +32,20 @@
             <div class="content_margin">
             <h2>Ticket Submission - Stenden Helpdesk</h2>
         <form method="POST" action="">
-            <p>Description <input type="text" name="desc"/></p>
-            <p>Type of Issue <input type="text" name="type"/></p>
+            <p><label for="desc">Description</label></p>
+            <p>
+                <textarea name="desc" id="desc" placeholder="Description..."></textarea>
+            </p>
+            <p><label for="dropdown">Type of Issue</label></p>
+            <p>
+                <select name="type" id="dropdown">
+                    <option value="1">Technical Problem</option>
+                    <option value="2">Functional Problem</option>
+                    <option value="3">Failure</option>
+                    <option value="4">Question</option>
+                    <option value="5">Wish</option>
+                </select>
+            </p>
             <p><input type="submit" value="Submit"></p>
         </form>
          </div>
@@ -63,7 +75,7 @@
         $desc = htmlentities($_POST['name']);
         $type = htmlentities($_POST['message']);
 
-        $SQLstring2 = "INSERT INTO incident (Incident_ID, Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (DEFAULT, CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
+        $SQLstring2 = "INSERT INTO incident (Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
 
         if ($stmt = mysqli_prepare($DBConnect, $SQLstring2)) {
             mysqli_stmt_bind_param($stmt, 'ss', $desc, $type);

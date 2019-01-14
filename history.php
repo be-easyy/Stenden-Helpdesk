@@ -49,7 +49,7 @@ if (!$SQLConnect) {
         $SQLstring = "SELECT * FROM ". $TableName;
         if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $incidentid, $time, $client, $date, $desc, $type, $other, $solution, $employee, $status);
+            mysqli_stmt_bind_result($stmt, $incidentid, $client, $time, $date, $desc, $type, $solution, $employee, $status);
             mysqli_stmt_store_result($stmt);
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 echo "<p>There are no tickets in your name!</p>";
