@@ -2,15 +2,13 @@
     include("./includes/init-db.php");
     include("./includes/init-session.php");
     include("./includes/check-login.php");
-    CheckClient();
+    CheckEmployee();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style/style.css" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <title>Client Overview - Stenden Support Desk</title>
 </head>
 <body>
@@ -21,27 +19,32 @@
             <div class="logo">
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
-            <div class="navbar">
-                <a href="input_ticket.php">New Ticket</a> 
+            <div class="navbar"> 
+                <a href="history.php">Something</a> 
                 <a href="history.php">Ticket History</a> 
-                <a href="overview_client.php">Overview</a> 
-                <a class="open" href="client_tickets.php">Your Tickets</a>
+                <a class="open" href="overview.php">Overview</a> 
+                <a href="adminpanel.php">Admin Panel</a>
                 <a href="faq.html">FAQ</a>
             </div>
         </div>
         <div class="content">
             <div class="content_margin">
-            
-<?php // TODO change type, solution, and employee in table
+                <h1>All Open Tickets</h1><br/>
+<?php
 
-$SQLConnect = OpenDBConnection();
+$Host = "localHost";
+$User = "root";
+$Pass = ""; // TODO change me if necessary
+$Database = "supportDesk";
+$SQLConnect = mysqli_connect($Host, $User, $Pass);
 
-$result = SelectDBResult($SQLConnect, "Incident", "*", "Client_ID", "1");
-
-if($result === false) {
-    echo "<p>There are no entries!</p>";
+if (!$SQLConnect) {
+    echo "<p>Unable to connect to the database server.</p>" . "<p>Error code " . mysqli_errno() . ": " . mysqli_error() . "</p>";
 } else {
-    $TableName = "incident";
+    if (!mysqli_select_db($SQLConnect, $Database)) {
+        echo "<p>There are no entries!</p>";
+    } else {
+        $TableName = "incident";
         $SQLstring = "SELECT * FROM ". $TableName;
         if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
             mysqli_stmt_execute($stmt);
@@ -52,7 +55,7 @@ if($result === false) {
             } else {
                 if ($status = 1){
                 echo "<table>";
-                echo "<tr><th>Incident</th> <th>Time</th> <th>Client</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee</th> <th>S</tr>";
+                echo "<tr><th>Incident</th> <th>Time</th> <th>Client</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee</th></tr>";
                 while (mysqli_stmt_fetch($stmt)) {
                     echo "<tr><td>" . $incidentid . "</td>";
                     echo "<td>" . $time . "</td>";
@@ -65,11 +68,11 @@ if($result === false) {
                 }
                 }
             }
+            mysqli_stmt_close($stmt);
+        }
+        mysqli_close($SQLConnect);
     }
 }
-}
-
-CloseDBConnection($SQLConnect);
 ?>
          </div>
         </div>
