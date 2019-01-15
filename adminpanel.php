@@ -34,7 +34,7 @@
                $Host = "localHost";
                $User = "root";
                $Pass = ""; // TODO change me if necessary
-               $Database = "supportDesk";
+               $Database = "supportdesk";
                $SQLConnect = mysqli_connect($Host, $User, $Pass);
                
                if (!$SQLConnect) {
@@ -78,10 +78,10 @@
             //this is gonna go horribly wrong
 if (isset($_POST['submit'])){
     if (isset($_GET['id'])){
-            mysqli_select_db($SQLConnect, $Database);
-            $SQLstring = "UPDATE incident SET solution = ?, employee = ?, WHERE Incident_ID = ?;";
+            mysqli_select_db($SQLConnect, $Database) or die('Couldnt select db.');
+            $SQLstring = "UPDATE incident SET Solution_ID = ?, Employee_ID = ? WHERE Incident_ID = ?;";
             if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
-                $stmt->bind_param('ss', $_POST['solution'], $_POST['employee'], $_GET['id']); //check if id exists in db
+                $stmt->bind_param('iii', intval($_POST['solution']), intval($_POST['employee']) , intval($_GET['id'])); //check if id exists in db
                 if (mysqli_stmt_execute($stmt)){
                     echo "Report changed succesfully!";
                 }else{
@@ -98,7 +98,7 @@ if (isset($_POST['submit'])){
 
 		if (isset($_GET['id'])){
             mysqli_select_db($SQLConnect, $Database);
-			$SQLstring = "SELECT * FROM incident WHERE Incident_ID = ?";
+			$SQLstring = "SELECT * FROM incident WHERE incident_ID = ?";
 			if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
 					$id = $_GET['id'];
 					mysqli_stmt_bind_param ($stmt, 'i', $id);
@@ -121,10 +121,10 @@ if (isset($_POST['submit'])){
 								<h2>Change Incident</h2> 
 								<form action="<?php echo htmlentities($_SERVER['PHP_SELF'] . '?id=') . $incidentid; ?>" method="POST">
 									<label for="solution">solution</label>
-									<input type="text" name="solution" id="solution" value="<?php echo $solution; ?>">
+									<input type="number" name="solution" id="solution" value="<?php echo $solution; ?>">
 									
 									<label for="employee">employee</label>
-									<input type="text" name="employee" id="employee" value="<?php echo $employee; ?>">
+									<input type="number" name="employee" id="employee" value="<?php echo $employee; ?>">
 
 									<input type="submit" name="submit" value="Submit">
 								</form></tr>
