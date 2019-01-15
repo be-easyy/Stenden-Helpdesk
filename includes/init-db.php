@@ -56,6 +56,11 @@ if (!$result) {
                 `Solution_Description` varchar(300) NOT NULL,
                 PRIMARY KEY (`Solution_ID`)
             );",
+        "CREATE TABLE `Status` (
+                `Status_ID` INT NOT NULL,
+                `Status_Description` varchar(300) NOT NULL,
+                PRIMARY KEY (`Status_ID`)
+            );",
         "CREATE TABLE `Client` (
                 `Client_ID` INT NOT NULL AUTO_INCREMENT,
                 `Client_Name` varchar(30) NOT NULL,
@@ -66,7 +71,8 @@ if (!$result) {
         "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk0` FOREIGN KEY (`Client_ID`) REFERENCES `Client`(`Client_ID`);",
         "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk1` FOREIGN KEY (`Type_ID`) REFERENCES `Type`(`Type_ID`);",
         "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk2` FOREIGN KEY (`Solution_ID`) REFERENCES `Solution`(`Solution_ID`);",
-        "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk3` FOREIGN KEY (`Employee_ID`) REFERENCES `Employee`(`Employee_ID`);"
+        "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk3` FOREIGN KEY (`Status_ID`) REFERENCES `Status`(`Status_ID`);",
+        "ALTER TABLE `Incident` ADD CONSTRAINT `Incident_fk4` FOREIGN KEY (`Employee_ID`) REFERENCES `Employee`(`Employee_ID`);"
     );
 
     foreach ($queries as $SQLQuery) {
@@ -108,6 +114,59 @@ if ($res->num_rows != 1) {
 
     $SQLConnect->query($query);
 }
+
+    // Create status types
+
+    $queryy = "SELECT * FROM `Status` WHERE `Status_ID` = '1'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `status` (Status_ID, Status_Description)
+        VALUES ('1','open')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Status` WHERE `Status_ID` = '2'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query =  "INSERT INTO `status` (Status_ID, Status_Description)
+        VALUES ('2','pending')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Status` WHERE `Status_ID` = '3'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query =  "INSERT INTO `status` (Status_ID, Status_Description)
+        VALUES ('3','forward to engineer')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Status` WHERE `Status_ID` = '4'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `status` (Status_ID, Status_Description)
+        VALUES ('4','forward to account manager')";
+
+        $SQLConnect->query($query);
+    }
+
+    $queryy = "SELECT * FROM `Status` WHERE `Status_ID` = '5'";
+    $res = $SQLConnect->query($queryy);
+    if($res->num_rows != 1) {
+
+        $query = "INSERT INTO `status` (Status_ID, Status_Description)
+        VALUES ('5','closed')";
+    
+
+        $SQLConnect->query($query);
+    }
 
     // Create type IDs
 
