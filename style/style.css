@@ -302,10 +302,15 @@ input:focus {
   }
   
   .panel {
+	margin: 15px 0 30px;
 	padding: 0 18px;
 	display: none;
 	background-color: #f3f3f3;
 	overflow: hidden;
+  }
+
+  .panel p{
+	font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   textarea,
