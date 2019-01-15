@@ -37,8 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-        $_SESSION["log_user"] = md5($user);
+        $_SESSION["log_user"] = $user;
         $_SESSION["log_type"] = 1;
+        $_SESSION["log_id"] = $row["Employee_ID"];
         header("location: overview.php");
         exit();
      }else {
@@ -49,8 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $count = mysqli_num_rows($result);
         
         if($count == 1) {
-            $_SESSION["log_user"] = md5($user);
+            $_SESSION["log_user"] = $user;
             $_SESSION["log_type"] = 2;
+            $_SESSION["log_id"] = $row["Client_ID"];
             header("location: overview_client.php");
             exit();
         } else {
