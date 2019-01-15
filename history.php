@@ -1,8 +1,8 @@
 <?php
-    include("./includes/init-db.php");
-    include("./includes/init-session.php");
-    include("./includes/check-login.php");
-    CheckAny();
+include("./includes/init-db.php");
+include("./includes/init-session.php");
+include("./includes/check-login.php");
+CheckAny();
 ?>
 
 <!DOCTYPE html>
@@ -20,59 +20,43 @@
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                    <a href="input_ticket.php">New Ticket</a> 
-                    <a class="open" href="history.php">Ticket History</a> 
-                    <a href="overview_client.php">Overview</a> 
-                    <a href="#">Your Tickets</a>
-                    <a href="faq.html">FAQ</a>
+                    <a href="./input_ticket.php">New Ticket</a> 
+                    <a class="open" href="./history.php">Ticket History</a> 
+                    <a href="./overview_client.php">Overview</a> 
+                    <a href="./client_tickets.php">Your Tickets</a>
+                    <a href="./faq.html">FAQ</a>
             </div>
         </div>
 
         <div class="content">
             <div class="content_margin">
             <h1>All Closed Tickets</h1><br/>
-<?php
+<?php // TODO change type, solution, and employee in table
 
-$Host = "localHost";
-$User = "root";
-$Pass = ""; // TODO change me if necessary
-$Database = "supportDesk";
-$SQLConnect = mysqli_connect($Host, $User, $Pass);
+$SQLConnect = OpenDBConnection();
 
-if (!$SQLConnect) {
-    echo "<p>Unable to connect to the database server.</p>" . "<p>Error code " . mysqli_errno() . ": " . mysqli_error() . "</p>";
+$result = SelectDBResult($SQLConnect, 'Incident', '*', 'Status', 1);
+
+if ($result === false) {
+    echo "<p>There are no tickets in your name!</p>";
 } else {
-    if (!mysqli_select_db($SQLConnect, $Database)) {
-        echo "<p>There are no entries!</p>";
-    } else {
-        $TableName = "incident";
-        $SQLstring = "SELECT * FROM 'Incident' WHERE `Status` = '0'";
-        if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $incidentid, $client, $time, $date, $desc, $type, $solution, $employee, $status);
-            mysqli_stmt_store_result($stmt);
-            if (mysqli_stmt_num_rows($stmt) == 0) {
-                echo "<p>There are no tickets in your name!</p>";
-            } else {
-                echo "<table>";
-                echo "<tr><th>Incident</th> <th>Time</th> <th>Client</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee</th></tr>";
-                while (mysqli_stmt_fetch($stmt)) {
-                    echo "<tr><td>" . $incidentid . "</td>";
-                    echo "<td>" . $time . "</td>";
-                    echo "<td>" . $client . "</td>";
-                    echo "<td>" . $date . "</td>";
-                    echo "<td>" . $desc . "</td>";
-                    echo "<td>" . $type . "</td>";
-                    echo "<td>" . $solution . "</td>";
-                    echo "<td>" . $employee . "</td></tr>";
-                }
-                echo "</table>";
-            }
-            mysqli_stmt_close($stmt);
-        }
-        mysqli_close($SQLConnect);
+    echo "<table>";
+    echo "<tr><th>ID</th> <th>Time Registered</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution ID</th> <th>Employee ID</th></tr>";
+    foreach ($result as $value) {
+        echo "<tr>";
+        echo "<td>" . $value["Incident_ID"] . "</td>";
+        echo "<td>" . $value["Time_Registered"] . "</td>";
+                    //echo "<td>" . $client . "</td>";
+        echo "<td>" . $value["Date"] . "</td>";
+        echo "<td>" . $value["Description"] . "</td>";
+        echo "<td>" . $value["Type_ID"] . "</td>";
+        echo "<td>" . $value["Solution_ID"] . "</td>";
+        echo "<td>" . $value["Employee_ID"] . "</td>";
+        echo "</tr>";
     }
+    echo "</table>";
 }
+CloseDBConnection($SQLConnect);
 ?>
             </div>
         </div>

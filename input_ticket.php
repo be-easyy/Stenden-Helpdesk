@@ -21,11 +21,11 @@ CheckClient();
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a class="open" href="input_ticket.php">New Ticket</a> 
-                <a href="history.php">Ticket History</a> 
-                <a href="overview_client.php">Overview</a> 
-                <a href="#">Your Tickets</a>
-                <a href="faq.html">FAQ</a>
+                <a class="open" href="./input_ticket.php">New Ticket</a> 
+                <a href="./history.php">Ticket History</a> 
+                <a href="./overview_client.php">Overview</a> 
+                <a href="./client_tickets.php">Your Tickets</a>
+                <a href="./faq.html">FAQ</a>
             </div>
         </div>
         <div class="content">

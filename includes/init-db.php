@@ -27,7 +27,7 @@ if (!$result) {
     echo "<h1>PLEASE REFRESH THE PAGE</h1><hr>database initialized";
     $queries = array(
         "CREATE TABLE `Incident` (
-                `Incident_ID` INT NOT NULL,
+                `Incident_ID` INT NOT NULL AUTO_INCREMENT,
                 `Client_ID` INT NOT NULL,
                 `Time_Registered` TIME NOT NULL,
                 `Date` DATE NOT NULL,
@@ -238,6 +238,54 @@ function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
 
 }
 
+function SelectDBResult($SQLConnect, $table, $fields, $where_field = null, $where_val = null)
+{
+    if (!ValidateTable($table)) {
+        return false;
+    }
+
+    if($where_field != null && $where_val != null) {
+        if(!ValidateFields($table, array($where_field))) {
+            return false;
+        }
+    }
+
+    $SQLQuery = "SELECT ";
+    if($fields == "*") {
+        $SQLQuery .= "*";
+    } else {
+        $counter = 1;
+        foreach ($fields as $field) {
+            $SQLQuery .= $field;
+
+            if($counter != count($fields))
+                $SQLQuery .= ", ";
+            $counter++;
+        }
+    }
+    $SQLQuery .= "FROM " . $table;
+    if($where_field != null && $where_val != null) {
+        $SQLQuery .= " WHERE `" . $where_field . "` = '" . $where_val . "'"; // TODO security
+    }
+    $stmt = $SQLConnect->prepare($SQLQuery);
+    if($stmt == false) {
+        echo "SelectDBResult:::SQL QUERY INCORRECT";
+        return false;
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows < 1) {
+        return false;
+    }
+
+    $data = array();
+    while ($res = $result->fetch_assoc()) {
+        array_push($data, $res);
+    }
+    $stmt->close();
+    return $data;
+}
+
 function ArrayToFields($fields)
 {
     $start = "(";
@@ -254,14 +302,19 @@ function ArrayToFields($fields)
     return $start . $main . $end;
 }
 
-function ValidateTable($table, $fields)
+function ValidateTable($table, $fields = null)
 {
     $_TABLES = array("Incident", "Type", "Employee", "Client", "Solution");
 
     $selected = "";
-    foreach ($_TABLES as $value)
-        if ($value == $table)
-        return ValidateFields($table, $fields);
+    foreach ($_TABLES as $value) {
+        if ($value == $table) {
+            if ($fields != null)
+                return ValidateFields($table, $fields);
+            else
+                return true;
+        }
+    }
     echo "ValidateTable:::TABLE (" . $table . ") CANNOT BE VALIDATED";
     return false;
 }
