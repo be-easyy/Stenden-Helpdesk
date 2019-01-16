@@ -35,7 +35,7 @@ CheckAny();
 
 $SQLConnect = OpenDBConnection();
 
-$result = SelectDBResult($SQLConnect, 'Incident', '*', 'Status', 5);
+$result = SelectDBResult($SQLConnect, 'Incident', '*', 'Status_ID', 5);
 
 if ($result === false) {
     echo "<p>There are no tickets in your name!</p>";

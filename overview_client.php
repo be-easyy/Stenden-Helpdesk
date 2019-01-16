@@ -31,16 +31,16 @@
         <div class="content">
             <div class="content_margin">
                 <h1>My Details</h2>
-                <h2>Username:</h2>
-                <h2><?php $_SESSION['username'] ?></h2>
-                <h2>Email:</h2>
-                <h2><?php $_SESSION['email'] ?></h2>
-                <h2>Phone Number:</h2>
-                <h2><?php $_SESSION['number'] ?></h2>
-                <h2>Function:</h2>
-                <h2><?php $_SESSION['function'] ?></h2>
-                <h2>License:</h2>
-                <h2><?php $_SESSION['license'] ?></h2>
+                <h2>Username:
+                <?php echo $_SESSION['log_user']; ?></h2>
+                <h2>Email:
+                <?php echo $_SESSION['log_email']; ?></h2>
+                <h2>Phone Number:
+                <?php echo $_SESSION['log_phone']; ?></h2>
+                <h2>Function:
+                <?php echo $_SESSION['log_func']; ?></h2>
+                <h2>License:
+                <?php echo $_SESSION['log_license']; ?></h2>
             </div>
         </div>
     </div>

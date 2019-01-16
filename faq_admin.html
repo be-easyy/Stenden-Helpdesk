@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style/style.css" type="text/css">
+        <title>FAQ - Stenden Helpdesk</title>
+    </head>
+    <body>
+        <div class="page">
+        <div class="wrap">
+            <div class="header">
+                <div class="logo">
+                <img id="logo" src="img/logo.png" alt="Logo">
+                </div>
+                <div class="navbar">
+                    <a href="./input_ticket.php">New Ticket</a> 
+                    <a href="./history.php">Ticket History</a> 
+                    <a href="./overview_client.php">Overview</a> 
+                    <a href="./client_tickets.php">Your Tickets</a>
+                    <a class="open" href="./faq_admin.html">FAQ</a>
+                </div>
+            </div>
+            <div class="content">
+                <div class="content_margin">
+                    <h2 class="headerfaq">Frequently Asked Questions</h2>
+
+                    <button class="accordion"><b>Do I need to be an accountant, bookkeeper to use the software?</b></button>
+                    <div class="panel">
+                    <p>
+                        If you are an accountant or bookkeeper then yes.
+                        Jokes aside, the answer is no. Like we mentioned before, 
+                        this software was developed with non-accountants in mind, so using it shouldn’t be a problem at all.
+                    </p>
+                    </div>
+
+                    <button class="accordion"><b>I can't seem to login with my user name and password, what can I do?</b></button>
+                    <div class="panel">
+                    <p>In case you are not able to login, you can try contacting the managing staff @: biz@stenden.com</p>
+                    <p>In the message explain your login issue and dont forget to input your product key</p>
+                    </div>
+
+                    <button class="accordion"><b>The programme keeps crashing for no reason as soon as it launches</b></button>
+                    <div class="panel">
+                    <p>
+                        <p>On some systems, quite rarely, this issue can appear.</p>
+                        <p>All that you have to do is to just install the newest update and it should fix the issue,</p>
+                        <p>don't forget to backup your data.</p>
+                    </p>
+                    </div>
+
+                    <button class="accordion"><b>Our antivirus notifies me that this software contains malicious software after every update</b></button>
+                    <div class="panel">
+                    <p>We asure that this software contains no viruses of malicious software of that nature. 
+                        This prompt appears only on older systems with old antivirus software. The only thing that we can suggest is just to ignore
+                    the notifications. And unblock the file if your antivirus has blocked it.</p>
+                    </div>
+
+                    <!--  Software doesn't recieve new updates on windows XP, why so? -->
+                    <button class="accordion"><b>My father left for cigarretes and never came back</b></button>
+                    <div class="panel">
+                    <p>Damn, timmy </p>
+                    <!-- We have moved on from windows XP and the only updates which we will put out for that system will be scarce minor bug fixes. 
+                    Sadly Windows 98 and Windows XP users, this year combined go up to only 7% of our total user base-->
+                    </div>
+
+                    <button class="accordion"><b>After the last update of your software on <i>MAC OS X 10.5 Leopard</i> the tables are broken and can't be filled! </b></button>
+                    <div class="panel">
+                    <p>We are currently working on a hotfix for that, but until the new updates comes out, you can go back to a previous update, by going into <b>Tools &gt; Settings &gt; Version control &gt; Rollback &gt; <i>Last Version</i></b></p>
+                    </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+                        
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="footer">
+            <div class="footer_margin">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -42,21 +42,18 @@ if($result === false) {
     echo "<p>There are no entries!</p>";
 } else {
     echo "<table>";
-    echo "<tr><th>ID</th> <th>Time Registered</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee ID</th></tr>";
+    echo "<tr><th></th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th></tr>";
     foreach ($result as $value) {
         $link = "<a href='show_ticket.php?id=" . $value["Incident_ID"] . "'>";
         echo "<tr>";
         echo "<td>" . $link . "Open Ticket</a></td>";
-        echo "<td>" . $value["Time_Registered"] . "</td>";
                     //echo "<td>" . $client . "</td>";
         echo "<td>" . $value["Date"] . "</td>";
         echo "<td>" . $value["Description"] . "</td>";
         echo "<td>" . GetTypeName($SQLConnect, $value["Type_ID"]) . "</td>";
         echo "<td>" . GetSolutionByID($SQLConnect, $value["Solution_ID"]) . "</td>";
-        echo "<td>" . $value["Employee_ID"] . "</td>";
         echo "</a></tr>";
     }
-}
 }
 
 CloseDBConnection($SQLConnect);

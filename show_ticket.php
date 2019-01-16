@@ -42,7 +42,7 @@ if (!isset($_GET["id"])) {
                         <?php
                             $SQLConnect = OpenDBConnection();
                             $query = "SELECT
-                            i.Time_Registered, i.Date, i.Description, t.Type_Name, i.Status, s.Solution_Description
+                            i.Time_Registered, i.Date, i.Description, t.Type_Name, i.Status_ID, s.Solution_Description
                             FROM Incident i
                             INNER JOIN Type t ON i.Type_ID = t.Type_ID
                             INNER JOIN Solution s ON i.Solution_ID = s.Solution_ID
@@ -54,9 +54,15 @@ if (!isset($_GET["id"])) {
                             $res = $result->fetch_assoc();
                             $stmt->close();
                             CloseDBConnection($SQLConnect);
-                            $status = "<i class='far fa-check-square'></i> Close";
-                            if($res["Status"] == 0)
-                                $status = "<i class='far fa-square'></i> Open";
+                            $status = "<i class='far fa-square'></i> Open";
+                            if($res["Status_ID"] == 2)
+                                $status = "<i class='far fa-minus-square'></i> Pending";
+                                if($res["Status_ID"] == 3)
+                                $status = "<i class='far fa-caret-square-up'></i> Forward to engineer";
+                                if($res["Status_ID"] == 4)
+                                $status = "<i class='far fa-caret-square-up'></i> Forward to account manager";
+                                if($res["Status_ID"] == 5)
+                                $status = "<i class='far fa-check-square'></i> Closed";
                             echo $status . " " . $res["Time_Registered"] . " " . $res["Date"];
                         ?>
                     </h5>

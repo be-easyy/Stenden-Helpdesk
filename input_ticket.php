@@ -1,8 +1,8 @@
 <?php
-    include("./includes/init-db.php");
-    include("./includes/init-session.php");
-    include("./includes/check-login.php");
-    CheckClient();
+include("./includes/init-db.php");
+include("./includes/init-session.php");
+include("./includes/check-login.php");
+CheckClient();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
                 <a class="open" href="input_ticket.php">New Ticket</a> 
                 <a href="history.php">Ticket History</a> 
                 <a href="overview_client.php">Overview</a> 
-                <a href="#">Your Tickets</a>
+                <a href="./client_tickets.php">Your Tickets</a>
                 <a href="faq.html">FAQ</a>
             </div>
         </div>
@@ -35,13 +35,13 @@
             <p>Description <input type="text" name="desc"/></p>
             <p>Type of Issue  
             <select name="issue">
-            <option value="tech">Technical Problem</option>
-            <option value="func">Functional Problem</option>
-            <option value="fail">Failure</option>
-            <option value="question">Question</option>
-            <option value="wish">Wish</option>
+            <option value="1">Technical Problem</option>
+            <option value="2">Functional Problem</option>
+            <option value="3">Failure</option>
+            <option value="4">Question</option>
+            <option value="5">Wish</option>
             </select></p>
-            <p><input type="submit" value="Submit"></p>
+            <p><input type="submit" name="submit" value="Submit"></p>
         </form>
          </div>
         </div>
@@ -56,8 +56,7 @@
 </html>
 
 <?php
-    if(!isset($_POST['submit'])){
-    
+if (isset($_POST['submit'])) {
     if (empty($_POST['desc']) || empty($_POST['issue'])) {
         echo "<p>You must fill in all the required elements.
             Click your browser's back button to return to the message form.</p>";
@@ -65,14 +64,14 @@
         $SQLConnect = OpenDBConnection();
 
         $id = NewSolution($SQLConnect);
-        
+
         $desc = htmlentities($_POST['desc']);
         $type = htmlentities($_POST['issue']);
 
-        $fields = array('Time_Registered', 'Client_ID', 'Date', 'Description', 'Type_ID', 'Status', 'Solution_ID');
-        $values = array('CURRENT_TIME', '1', 'CURRENT_DATE', $desc, $type, '0', $id); // TODO change NULL to CLient_ID
+        $fields = array('Time_Registered', 'Client_ID', 'Date', 'Description', 'Type_ID', 'Status_ID', 'Solution_ID');
+        $values = array('CURRENT_TIME', '1', 'CURRENT_DATE', $desc, $type, '1', $id); // TODO change NULL to CLient_ID
 
-        $stmt = InsertDBStatement($SQLConnect, "Incident", $fields, $values, "issii");
+        $stmt = InsertDBStatement($SQLConnect, "Incident", $fields, $values, "isiii");
         if ($stmt != false) {
             $QueryResult2 = $stmt->execute();
             if ($QueryResult2 === false) {
@@ -84,7 +83,7 @@
         } else {
             echo "error";
         }
-        mysqli_close($DBConnect);
+        CloseDBConnection($SQLConnect);
     }
 }
 ?>

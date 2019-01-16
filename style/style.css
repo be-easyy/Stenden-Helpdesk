@@ -235,10 +235,15 @@ input:focus {
 		text-align: center;
 	}
 
+	tr {
+		border-bottom: 2px solid #4CAF5040;
+	}
+
 	th{
 		box-sizing: border-box;
 		font-size: 1em;
 		background-color: #ddd;
+		min-width: 8vw;
 	}
 	
 	tr.closed {

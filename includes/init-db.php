@@ -36,7 +36,7 @@ if (!$result) {
                 `Solution_ID` INT,
                 `Employee_ID` INT,
                 `Priority` INT,
-                `Status` TINYINT,
+                `Status_ID` INT,
                 PRIMARY KEY (`Incident_ID`,`Time_Registered`)
             );",
         "CREATE TABLE `Type` (
@@ -65,7 +65,10 @@ if (!$result) {
         "CREATE TABLE `Client` (
                 `Client_ID` INT NOT NULL AUTO_INCREMENT,
                 `Client_Name` varchar(30) NOT NULL,
+                `Client_Phone` varchar(20) NOT NULL,
                 `Client_Pass` varchar(40) NOT NULL,
+                `Client_Email` varchar(50) NOT NULL,
+                `Client_Function` varchar(30) NOT NULL,
                 `Client_License` INT NOT NULL,
                 PRIMARY KEY (`Client_ID`)
             );",
@@ -108,9 +111,12 @@ $res = $SQLConnect->query($queryy);
 if ($res->num_rows != 1) {
     $pass = md5("dummy");
 
-    $query = "INSERT INTO `Client` (Client_Name, Client_Pass, Client_License)
+    $query = "INSERT INTO `Client` (Client_Name, Client_Pass, Client_Phone, Client_Email, Client_Function, Client_License)
         VALUES ('dummy',
         '$pass',
+        '+9874123698412',
+        'dummy@yoink.com',
+        'Boss',
         '0')";
 
     $SQLConnect->query($query);
@@ -387,7 +393,7 @@ function ValidateTable($table, $fields = null)
 
 function ValidateFields($table, $fields)
 {
-    $incident = array('Incident_ID', 'Client_ID', 'Time_Registered', 'Date', 'Description', 'Type_ID', 'Solution_ID', 'Employee_ID', 'Status');
+    $incident = array('Incident_ID', 'Client_ID', 'Time_Registered', 'Date', 'Description', 'Type_ID', 'Solution_ID', 'Employee_ID', 'Status_ID');
     $type = array('Type_ID', 'Type_Name');
     $employee = array('Employee_ID', 'Employee_Name', 'Employee_Image', 'Employee_Pass', 'Employee_Permission');
     $client = array('Client_ID', 'Client_Name', 'Client_Pass', 'Client_License');
@@ -432,9 +438,7 @@ function NewSolution($SQLConnect)
     $table = "Solution";
     $fields = array("Solution_Description");
     $values = array("this is a random string to help with DB initialization");
-    echo "test";
     $stmt = InsertDBStatement($SQLConnect, $table, $fields, $values, "s");
-    echo "test2";
 
     $stmt->execute();
 

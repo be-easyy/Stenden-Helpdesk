@@ -52,7 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if($count == 1) {
             $_SESSION["log_user"] = $user;
             $_SESSION["log_type"] = 2;
+            $_SESSION["log_license"] = $row["Client_License"];
+            $_SESSION["log_phone"] = $row["Client_Phone"];
             $_SESSION["log_id"] = $row["Client_ID"];
+            $_SESSION["log_email"] = $row["Client_Email"];
+            $_SESSION["log_func"] = $row["Client_Function"];
             header("location: overview_client.php");
             exit();
         } else {
