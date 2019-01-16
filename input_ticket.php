@@ -62,25 +62,21 @@
         echo "<p>You must fill in all the required elements.
             Click your browser's back button to return to the message form.</p>";
     } else {
-        include ("includes/init-db.php");
+        $SQLConnect = OpenDBConnection();
 
-        mysqli_select_db($DBConnect, $db_name);
-
+        $id = NewSolution($SQLConnect);
+        
         $desc = htmlentities($_POST['desc']);
         $type = htmlentities($_POST['issue']);
 
-        $SQLstring2 = "";
+        $fields = array('Time_Registered', 'Client_ID', 'Date', 'Description', 'Type_ID', 'Status', 'Solution_ID');
+        $values = array('CURRENT_TIME', '1', 'CURRENT_DATE', $desc, $type, '0', $id); // TODO change NULL to CLient_ID
 
-        if ($stmt = mysqli_prepare($DBConnect, $SQLstring2)) {
-            mysqli_stmt_bind_param($stmt, 'ss', $desc, $type);
-            $QueryResult2 = mysqli_stmt_execute($stmt);
-            if ($QueryResult2 === FALSE) {
-                echo "<p>Unable to execute the query.</p>"
-                . "<p>Error code "
-                . mysqli_errno($DBConnect)
-                . ": "
-                . mysqli_error($DBConnect)
-                . "</p>";
+        $stmt = InsertDBStatement($SQLConnect, "Incident", $fields, $values, "issii");
+        if ($stmt != false) {
+            $QueryResult2 = $stmt->execute();
+            if ($QueryResult2 === false) {
+                DisplayDBError($SQLConnect);
             } else {
                 echo "<h1>Thank you for submitting your ticket!</h1>";
             }

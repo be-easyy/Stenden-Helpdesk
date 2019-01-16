@@ -30,7 +30,7 @@ body{
 }
 
 .wrap{
-	width: 60%;
+	width: 100%;
 	min-width: 527px;
 	height: auto -10%;
 	background-color: #ffffff80;
@@ -39,7 +39,7 @@ body{
 }
 
 .content{
-	width: 90%;
+	width: 95%;
 	min-width: 290px;
 	height: 90%;
 	background-color: #f3f3f3;
@@ -51,8 +51,8 @@ body{
 }
 
 .content_margin{
-	margin:	5%	10% 10% 10%;
-	padding-top: 10%;
+	margin:	3%	5% 5% 5%;
+	padding-top: 5%;
 }
 
 /*FORM Start*/
@@ -120,7 +120,7 @@ form label{
 	color: white;
 	text-decoration: none;
 	font-size: 19px;
-	width: 16%;
+	width: calc(20% - 30px);
 	text-align: center;
 	transition-duration: 400ms;
   }
@@ -239,31 +239,22 @@ input:focus {
 		box-sizing: border-box;
 		font-size: 1em;
 		background-color: #ddd;
-		border-top: 1px solid #555;
-		border-bottom: 1px solid #555;
-		border-left: 4px solid #4CAF50;
 	}
-
+	
 	tr.closed {
 		color: #444;
 		background-color: #666;
 	}
-
+	
 	tr.closed > td > i {
 		font-size: 2em;
 		color: #4CAF50;
 	}
 	
 	th, td {
+		border-left: 2px solid #4CAF5040;
 		/*text-align: left;*/
 		padding: 8px;
-		border-top: 1px solid #555;
-		border-bottom: 1px solid #555;
-		border-right: 1px solid #555;
-	}
-
-	td {
-		border-left: 1px solid #555;
 	}
 
 
@@ -350,3 +341,16 @@ input:focus {
   }
 
 /*FAQ page END*/
+
+.fa-square {
+	color: red;
+}
+
+.fa-check-square {
+	color: green;
+}
+
+.line {
+	width: 10px;
+	margin-bottom: 6px;
+}

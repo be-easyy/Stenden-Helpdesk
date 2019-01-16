@@ -32,7 +32,7 @@
         <div class="content">
             <div class="content_margin">
             
-<?php // TODO change type, solution, and employee in table
+<?php // TODO change type, and employee in table
 
 $SQLConnect = OpenDBConnection();
 
@@ -41,30 +41,20 @@ $result = SelectDBResult($SQLConnect, "Incident", "*", "Client_ID", "1");
 if($result === false) {
     echo "<p>There are no entries!</p>";
 } else {
-    $TableName = "incident";
-        $SQLstring = "SELECT * FROM ". $TableName;
-        if ($stmt = mysqli_prepare($SQLConnect, $SQLstring)) {
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $incidentid, $time, $client, $date, $desc, $type, $solution, $employee, $status);
-            mysqli_stmt_store_result($stmt);
-            if (mysqli_stmt_num_rows($stmt) == 0) {
-                echo "<p>There are no tickets in your name!</p>";
-            } else {
-                if ($status = 1){
-                echo "<table>";
-                echo "<tr><th>Incident</th> <th>Time</th> <th>Client</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee</th> <th>S</tr>";
-                while (mysqli_stmt_fetch($stmt)) {
-                    echo "<tr><td>" . $incidentid . "</td>";
-                    echo "<td>" . $time . "</td>";
-                    echo "<td>" . $client . "</td>";
-                    echo "<td>" . $date . "</td>";
-                    echo "<td>" . $desc . "</td>";
-                    echo "<td>" . $type . "</td>";
-                    echo "<td>" . $solution . "</td>";
-                    echo "<td>" . $employee . "</td></tr>";
-                }
-                }
-            }
+    echo "<table>";
+    echo "<tr><th>ID</th> <th>Time Registered</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th> <th>Employee ID</th></tr>";
+    foreach ($result as $value) {
+        $link = "<a href='show_ticket.php?id=" . $value["Incident_ID"] . "'>";
+        echo "<tr>";
+        echo "<td>" . $link . "Open Ticket</a></td>";
+        echo "<td>" . $value["Time_Registered"] . "</td>";
+                    //echo "<td>" . $client . "</td>";
+        echo "<td>" . $value["Date"] . "</td>";
+        echo "<td>" . $value["Description"] . "</td>";
+        echo "<td>" . GetTypeName($SQLConnect, $value["Type_ID"]) . "</td>";
+        echo "<td>" . GetSolutionByID($SQLConnect, $value["Solution_ID"]) . "</td>";
+        echo "<td>" . $value["Employee_ID"] . "</td>";
+        echo "</a></tr>";
     }
 }
 }

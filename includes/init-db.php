@@ -35,6 +35,7 @@ if (!$result) {
                 `Type_ID` INT NOT NULL,
                 `Solution_ID` INT,
                 `Employee_ID` INT,
+                `Priority` INT,
                 `Status` TINYINT,
                 PRIMARY KEY (`Incident_ID`,`Time_Registered`)
             );",
@@ -254,7 +255,7 @@ function CloseDBConnection($SQLConnect)
     }
     $SQLConnect->close();
 }
-//$query = "INSERT INTO $table (Time_Registered, Client_ID, Date, Description, Type_ID, Other) VALUES (CURRENT_TIME, NULL, CURRENT_DATE, ?, ?, NULL, NULL, NULL)";
+
 function InsertDBStatement($SQLConnect, $table, $fields, $values, $types)
 {
     if (!ValidateTable($table, $fields)) {
@@ -303,37 +304,38 @@ function SelectDBResult($SQLConnect, $table, $fields, $where_field = null, $wher
         return false;
     }
 
-    if($where_field != null && $where_val != null) {
-        if(!ValidateFields($table, array($where_field))) {
+    if ($where_field != null && $where_val != null && strpos($table, " ") === false) {
+        if (!ValidateFields($table, array($where_field))) {
             return false;
         }
     }
 
     $SQLQuery = "SELECT ";
-    if($fields == "*") {
+    if ($fields == "*") {
         $SQLQuery .= "*";
     } else {
         $counter = 1;
         foreach ($fields as $field) {
             $SQLQuery .= $field;
 
-            if($counter != count($fields))
+            if ($counter != count($fields))
                 $SQLQuery .= ", ";
             $counter++;
         }
     }
-    $SQLQuery .= "FROM " . $table;
-    if($where_field != null && $where_val != null) {
+    $SQLQuery .= " FROM " . $table;
+    if ($where_field != null && $where_val != null) {
         $SQLQuery .= " WHERE `" . $where_field . "` = '" . $where_val . "'"; // TODO security
     }
     $stmt = $SQLConnect->prepare($SQLQuery);
-    if($stmt == false) {
+    if ($stmt == false) {
         echo "SelectDBResult:::SQL QUERY INCORRECT";
+        echo "<br><br>QUERY:::" . $SQLQuery . "<br><br>";
         return false;
     }
     $stmt->execute();
     $result = $stmt->get_result();
-    if($result->num_rows < 1) {
+    if ($result->num_rows < 1) {
         return false;
     }
 
@@ -363,19 +365,24 @@ function ArrayToFields($fields)
 
 function ValidateTable($table, $fields = null)
 {
-    $_TABLES = array("Incident", "Type", "Employee", "Client", "Solution");
+    echo strpos($table, " ");
+    if(strpos($table, " ") === false) {
+        $_TABLES = array("Incident", "Type", "Employee", "Client", "Solution");
 
-    $selected = "";
-    foreach ($_TABLES as $value) {
-        if ($value == $table) {
-            if ($fields != null)
-                return ValidateFields($table, $fields);
-            else
-                return true;
+        $selected = "";
+        foreach ($_TABLES as $value) {
+            if ($value == $table) {
+                if ($fields != null)
+                    return ValidateFields($table, $fields);
+                else
+                    return true;
+            }
         }
+        echo "ValidateTable:::TABLE (" . $table . ") CANNOT BE VALIDATED";
+        return false;
+    } else {
+        return true;
     }
-    echo "ValidateTable:::TABLE (" . $table . ") CANNOT BE VALIDATED";
-    return false;
 }
 
 function ValidateFields($table, $fields)
@@ -386,9 +393,10 @@ function ValidateFields($table, $fields)
     $client = array('Client_ID', 'Client_Name', 'Client_Pass', 'Client_License');
     $solution = array('Solution_ID', 'Solution_Description');
 
-    $_FIELDS = array('Incident' => $incident, 'Type' => $type, 'Employee' => $employee, 'Client' => $client, 'Solution', $solution);
+    $_FIELDS = array('Incident' => $incident, 'Type' => $type, 'Employee' => $employee, 'Client' => $client, 'Solution' => $solution);
 
     $_selected = $_FIELDS[$table];
+
 
     foreach ($fields as $field) {
         $validated = false;
@@ -399,6 +407,10 @@ function ValidateFields($table, $fields)
         }
         if (!$validated) {
             echo "ValidateFields:::FIELD (" . $field . ") CANNOT BE VALIDATED";
+            echo "<br>";
+            var_dump($fields);
+            echo "<br>";
+            var_dump($_selected);
             return false;
         }
     }
@@ -413,5 +425,56 @@ function DisplayDBError($SQLConnect)
         . ": "
         . $SQLConnect->error
         . "</p>";
+}
+
+function NewSolution($SQLConnect)
+{
+    $table = "Solution";
+    $fields = array("Solution_Description");
+    $values = array("this is a random string to help with DB initialization");
+    echo "test";
+    $stmt = InsertDBStatement($SQLConnect, $table, $fields, $values, "s");
+    echo "test2";
+
+    $stmt->execute();
+
+    $query = "SELECT `Solution_ID` FROM Solution WHERE `Solution_Description` = 'this is a random string to help with DB initialization'";
+    $stmt = $SQLConnect->prepare($query);
+
+    $stmt->execute();
+    $tmp = $stmt->get_result();
+    $id = $tmp->fetch_assoc()["Solution_ID"];
+
+    InitSolution($SQLConnect, $id);
+
+    return $id;
+}
+
+function InitSolution($SQLConnect, $id)
+{
+    $query = "UPDATE Solution SET Solution_Description = '' WHERE Solution_ID = '$id'";
+    $SQLConnect->query($query);
+}
+
+function GetSolutionByID($SQLConnect, $ID) {
+    $result = SelectDBResult($SQLConnect, "Solution", array("Solution_Description"), "Solution_ID", $ID);
+    if($result === false) {
+        echo $SQLConnect->error;
+        return false;
+    } else {
+        return $result[0]["Solution_Description"];
+    }
+    return false;
+}
+
+function GetTypeName($SQLConnect, $ID) {
+    $result = SelectDBResult($SQLConnect, "Type", array("Type_Name"), "Type_ID", $ID);
+    if($result === false) {
+        echo $SQLConnect->error;
+        return false;
+    } else {
+        return $result[0]["Type_Name"];
+    }
+    return false;
 }
 ?>
