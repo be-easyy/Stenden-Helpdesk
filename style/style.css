@@ -359,3 +359,8 @@ input:focus {
 	width: 10px;
 	margin-bottom: 6px;
 }
+
+.profile_image {
+	width: 100px;
+	height: 100px;
+}

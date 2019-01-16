@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $pass = $_POST["pass"];
     $hash = md5($pass);
 
-    $sql = "SELECT Employee_ID FROM Employee WHERE Employee_Name = '$user' AND Employee_Pass = '$hash'";
+    $sql = "SELECT * FROM Employee WHERE Employee_Name = '$user' AND Employee_Pass = '$hash'";
     $result = mysqli_query($SQLConnect, $sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     
@@ -40,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $_SESSION["log_user"] = $user;
         $_SESSION["log_type"] = 1;
         $_SESSION["log_id"] = $row["Employee_ID"];
+        $_SESSION["log_image"] = $row["Employee_Image"];
+        $_SESSION["log_permission"] = $row["Employee_Permission"];
         header("location: overview.php");
         exit();
      }else {
