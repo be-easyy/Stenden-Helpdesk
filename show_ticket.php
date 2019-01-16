@@ -37,8 +37,10 @@ if (!isset($_GET["id"])) {
                 <div class="content">
                     <div class="content_margin">
                     <h2>Ticket No. <?php echo $_GET["id"] ?> - Stenden Helpdesk</h2>
-                    <hr>
-                    <h5>
+                    <br>
+                        <hr>
+                    <br>
+                    <h4>
                         <?php
                             $SQLConnect = OpenDBConnection();
                             $query = "SELECT
@@ -65,12 +67,15 @@ if (!isset($_GET["id"])) {
                                 $status = "<i class='far fa-check-square'></i> Closed";
                             echo $status . " " . $res["Time_Registered"] . " " . $res["Date"];
                         ?>
-                    </h5>
+                    </h4>
+                    <div class="ticket_description">
                     <?php
                         echo "<br><br><b>Type:</b><hr class='line'>" . $res["Type_Name"];
                         echo "<br><br><b>Description:</b><hr class='line'>" . $res["Description"];
-                        echo "<br><br><br><b>Solution:</b><hr class='line'>" . $res["Solution_Description"];
+                        echo "<br><br><b>Solution:</b><hr class='line'>" . $res["Solution_Description"];
                     ?>
+                    </div>
+                    <br>
                     </div>
                 </div>
             </div>
