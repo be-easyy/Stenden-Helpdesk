@@ -30,17 +30,25 @@
         </div>
         <div class="content">
             <div class="content_margin">
-                <h1>My Details</h2>
-                <h2>Username:
-                <?php echo $_SESSION['log_user']; ?></h2>
-                <h2>Email:
-                <?php echo $_SESSION['log_email']; ?></h2>
-                <h2>Phone Number:
-                <?php echo $_SESSION['log_phone']; ?></h2>
-                <h2>Function:
-                <?php echo $_SESSION['log_func']; ?></h2>
-                <h2>License:
-                <?php echo $_SESSION['log_license']; ?></h2>
+                <h1>My Details</h1>
+                <br>
+                <div class="detailss">
+                <h3>Username:
+                <?php echo $_SESSION['log_user']; ?></h3>
+                <br>
+                <h3>Email:
+                <?php echo $_SESSION['log_email']; ?></h3>
+                <br>
+                <h3>Phone Number:
+                <?php echo $_SESSION['log_phone']; ?></h3>
+                <br>
+                <h3>Function:
+                <?php echo $_SESSION['log_func']; ?></h3>
+                <br>
+                <h3>License:
+                <?php echo $_SESSION['log_license']; ?></h3>
+                </div>
+                <br>
             </div>
         </div>
     </div>
