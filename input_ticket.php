@@ -32,7 +32,7 @@ CheckClient();
             <div class="content_margin">
             <h2>Ticket Submission - Stenden Helpdesk</h2>
         <form method="POST" action="input_ticket.php">
-            <p>Description <input type="text" name="desc"/></p>
+            <p>Description <input type="text" name="desc" maxlength="400"></p>
             <p>Type of Issue  
             <select name="issue">
             <option value="1">Technical Problem</option>
@@ -43,7 +43,7 @@ CheckClient();
             </select></p>
             <p><input type="submit" name="submit" value="Submit"></p>
         </form>
-         </div>
+        </div>
         </div>
     </div>
 

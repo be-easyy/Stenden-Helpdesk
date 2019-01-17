@@ -62,7 +62,7 @@ if($result === false) {
 
 CloseDBConnection($SQLConnect);
 ?>
-         </div>
+            </div>
         </div>
     </div>
 
