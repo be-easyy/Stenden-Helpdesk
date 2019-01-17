@@ -21,7 +21,7 @@
             </div>
             <div class="navbar"> 
                 <a href="./adminpanel.php">Admin Panel</a>
-                <a href="./history.php">Ticket History</a>
+                <a href="./history_admin.php">Ticket History</a>
                 <a class="open" href="./overview.php">Overview</a> 
                 <a href="./edit_ticket.php">Edit Tickets</a> 
                 <a href="./faq_admin.html">FAQ</a>
@@ -29,32 +29,35 @@
         </div>
         <div class="content">
             <div class="content_margin">
-                <h1>My Details</h2>
-                <img class="profile_image" src="img/<?php echo $_SESSION['log_image']; ?>" alt="employee_image">
-                <h2>Employee ID:</h2>
-                <h2><?php echo $_SESSION['log_id']; ?></h2>
-                <h2>Username:</h2>
-                <h2><?php echo $_SESSION['log_user']; ?></h2>
-                <h2>Employee Permission:</h2>
-                <h2>
-                    <?php 
-                        if($_SESSION['log_permission'] = 0) {
-                            echo "Administrator";
-                        }else{
-                            echo "Employee";
-                        }
-                    ?>
-                </h2>
+                <div class="detailss">
+                    <div class="details_header">
+                        <h1 class="header_details">My Details</h1>
+                    </div> 
+                    <div class="details_image">     
+                        <img class="profile_image" src="img/<?php echo $_SESSION['log_image']; ?>" alt="employee_image">
+                    </div>  
+                    <div class="details_holder">     
+                        <h2>Employee ID:</h2>
+                        <h3><?php echo $_SESSION['log_id']; ?></h3>
+                        <h2>Username:</h2>
+                        <h3><?php echo $_SESSION['log_user']; ?></h3>
+                        <h2>Employee Permission:</h2>
+                        <h3>
+                            <?php 
+                                if($_SESSION['log_permission'] == 0) {   
+                                    echo "Administrator";
+                                }else{
+                                    echo "Employee";
+                                }
+                            ?>
+                        </h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 <div class="footer">
-        <div class="logout_button">
-            <button type="button" class="button button5">
-                <p>Log out</p>
-            </button>
-        </div>
         <div class="footer_margin">
             
         </div>

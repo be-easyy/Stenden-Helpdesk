@@ -21,11 +21,11 @@ CheckEmployee();
             <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
-                <a href="input_ticket.php">New Ticket</a> 
-                <a href="history.php">Ticket History</a> 
-                <a class="open" href="overview.php">Overview</a> 
-                <a href="adminpanel.php">Admin Panel</a>
-                <a href="faq.html">FAQ</a>
+                <a class="open" href="./adminpanel.php">Admin Panel</a>
+                <a href="./history_admin.php">Ticket History</a>
+                <a href="./overview.php">Overview</a> 
+                <a href="./edit_ticket.php">Edit Tickets</a> 
+                <a href="./faq_admin.html">FAQ</a>
             </div>
         </div>
         <div class="content">
@@ -163,11 +163,6 @@ mysqli_close($SQLConnect);
     </div>
 
 <div class="footer">
-<div class="logout_button">
-        <button type="button" class="button button5">
-            <p>Log out</p>
-        </button>
-    </div>
         <div class="footer_margin">
         </div>
     </div>
