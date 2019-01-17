@@ -35,7 +35,7 @@ CheckClient();
             <div class="content_margin">
             <h2>Ticket Submission - Stenden Helpdesk</h2>
         <form method="POST" action="input_ticket.php">
-            <p>Description <input type="text" name="desc" maxlength="400"></p>
+            <p>Description <input type="text" name="desc" maxlength="2000"></p>
             <p>Type of Issue  
             <select name="issue">
             <option value="1">Technical Problem</option>
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
 
         $id = NewSolution($SQLConnect);
 
-        $desc = htmlentities($_POST['desc']);
+        $desc = htmlentities(filter_var($_POST['desc'], FILTER_SANITIZE_STRING));
         $type = htmlentities($_POST['issue']);
 
         $fields = array('Time_Registered', 'Client_ID', 'Date', 'Description', 'Type_ID', 'Status_ID', 'Solution_ID');

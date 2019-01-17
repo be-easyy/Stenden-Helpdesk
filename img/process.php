@@ -96,7 +96,7 @@ function GetImagePath($image) {
 
     } else {
         if (move_uploaded_file($image["tmp_name"], $target_file)) {
-            return "img/" . $image["name"];
+            return $image["name"];
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
@@ -139,7 +139,7 @@ function SaveImage($image, $id)
             SET Employee_Image = ?
             WHERE Employee_ID = ?";
             $stmt = $SQLConnect->prepare($SQLQuery);
-            $path = "img/" . $image["name"];
+            $path = $image["name"];
             $stmt->bind_param("si", $path, $id);
             $stmt->execute();
             $stmt->close();

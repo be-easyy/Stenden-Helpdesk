@@ -51,9 +51,9 @@ if ($result === false) {
         echo "<td>" . $link . "Open Ticket</a></td>";
                     //echo "<td>" . $client . "</td>";
         echo "<td>" . $value["Date"] . "</td>";
-        echo "<td>" . $value["Description"] . "</td>";
+        echo "<td>" . htmlentities($value["Description"]) . "</td>";
         echo "<td>" . GetTypeName($SQLConnect, $value["Type_ID"]) . "</td>";
-        echo "<td>" . GetSolutionByID($SQLConnect, $value["Solution_ID"]) . "</td>";
+        echo "<td>" . htmlentities(GetSolutionByID($SQLConnect, $value["Solution_ID"])) . "</td>";
         echo "</a></tr>";
     }
     echo "</table>";

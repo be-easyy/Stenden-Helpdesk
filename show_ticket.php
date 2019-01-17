@@ -46,7 +46,13 @@ if (!isset($_GET["id"])) {
                         <?php
                             $SQLConnect = OpenDBConnection();
                             $query = "SELECT
-                            i.Time_Registered, i.Date, i.Description, t.Type_Name, i.Status_ID, s.Solution_Description
+                            i.Time_Registered,
+                            i.Date,
+                            i.Description,
+                            t.Type_Name,
+                            i.Status_ID,
+                            s.Solution_Description,
+                            i.Employee_ID
                             FROM Incident i
                             INNER JOIN Type t ON i.Type_ID = t.Type_ID
                             INNER JOIN Solution s ON i.Solution_ID = s.Solution_ID
@@ -72,9 +78,18 @@ if (!isset($_GET["id"])) {
                     </h4>
                     <div class="ticket_description">
                     <?php
+                        if(!empty($res["Employee_ID"])) {
+                            $SQLConnect = OpenDBConnection();
+                            $stuff = GetEmployeeByID($SQLConnect, $res["Employee_ID"]);
+                            CloseDBConnection($SQLConnect);
+                            if($stuff !== false) {
+                                echo "<img style='width:100px;' src='img/" . $stuff[1] . "' alt='employee'>";
+                                echo "<br><br><b>Employee:</b><hr class='line'>" . $stuff[0];
+                            }
+                        }
                         echo "<br><br><b>Type:</b><hr class='line'>" . $res["Type_Name"];
-                        echo "<br><br><b>Description:</b><hr class='line'>" . $res["Description"];
-                        echo "<br><br><b>Solution:</b><hr class='line'>" . $res["Solution_Description"];
+                        echo "<br><br><b>Description:</b><hr class='line'>" . htmlentities($res["Description"]);
+                        echo "<br><br><b>Solution:</b><hr class='line'>" . htmlentities($res["Solution_Description"]);
                     ?>
                     </div>
                     <br>

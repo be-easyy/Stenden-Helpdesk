@@ -64,9 +64,9 @@ if (!$SQLConnect) {
                     echo "<td>" . $time . "</td>";
                     echo "<td>" . $client . "</td>";
                     echo "<td>" . $date . "</td>";
-                    echo "<td>" . $desc . "</td>";
+                    echo "<td>" . htmlentities($desc) . "</td>";
                     echo "<td>" . $type . "</td>";
-                    echo "<td>" . $solution . "</td>";
+                    echo "<td>" . htmlentities(GetSolutionByID($SQLConnect, $solution)) . "</td>";
                     echo "<td>" . $employee . "</td></tr>";
                 }
                 }
@@ -77,7 +77,7 @@ if (!$SQLConnect) {
     }
 }
 ?>
-         </div>
+        </div>
         </div>
     </div>
 

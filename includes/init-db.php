@@ -31,7 +31,7 @@ if (!$result) {
                 `Client_ID` INT NOT NULL,
                 `Time_Registered` TIME NOT NULL,
                 `Date` DATE NOT NULL,
-                `Description` varchar(400) NOT NULL,
+                `Description` varchar(2000) NOT NULL,
                 `Type_ID` INT NOT NULL,
                 `Solution_ID` INT,
                 `Employee_ID` INT,
@@ -54,7 +54,7 @@ if (!$result) {
             );",
         "CREATE TABLE `Solution` (
                 `Solution_ID` INT NOT NULL AUTO_INCREMENT,
-                `Solution_Description` varchar(300) NOT NULL,
+                `Solution_Description` varchar(1000) NOT NULL,
                 PRIMARY KEY (`Solution_ID`)
             );",
         "CREATE TABLE `Status` (
@@ -269,7 +269,20 @@ if (!$result) {
     $SQLConnect->close();
 }
 
-    // FUNCTIONS HERE ===================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // FUNCTIONS HERE =============================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+    // ============================================================================
+
 
 function OpenDBConnection($host = "localhost", $user = "root", $pass = "", $database = "SupportDesk")
 {
@@ -508,6 +521,23 @@ function GetTypeName($SQLConnect, $ID)
         return false;
     } else {
         return $result[0]["Type_Name"];
+    }
+    return false;
+}
+
+function GetEmployeeByID($SQLConnect, $ID) {
+    $result = SelectDBResult($SQLConnect,
+        "Employee",
+        array("Employee_Name", "Employee_Image"),
+        "Employee_ID",
+        $ID
+    );
+    if ($result === false) {
+        echo $SQLConnect->error;
+        return false;
+    } else {
+        $res = array($result[0]["Employee_Name"], $result[0]["Employee_Image"]);
+        return $res;
     }
     return false;
 }
