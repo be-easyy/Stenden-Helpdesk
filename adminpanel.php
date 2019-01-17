@@ -19,7 +19,9 @@ CheckEmployee();
     <div class="wrap">
         <div class="header">
             <div class="logo">
-                <img id="logo" src="img/logo.png" alt="Logo">
+                <a href="./overview.php">
+                    <img id="logo" src="img/logo.png" alt="Logo">
+                </a>
             </div>
             <div class="navbar">
                 <a class="open" href="./adminpanel.php">Admin Panel</a>
@@ -32,43 +34,43 @@ CheckEmployee();
         <div class="content">
             <div class="content_margin">
                 <?php
-                    if($_SESSION["log_permission"] == 1) {
-                        echo "You have no permission to view this page";
-                    } else {
-                        if(isset($_GET["error"])) {
-                            $error = "";
-                            switch ($_GET["error"]) {
-                                case 0:
-                                    $error = "Successfully changed account.";
-                                    break;
-                                case 1:
-                                    $error = "Nothing has changed.";
-                                    break;
-                                case 2:
-                                    $error = "The image must be smaller than 1MB and must be JPG, JPEG, PNG or GIF format.";
-                                    break;
-                                case 3:
-                                    $error = "For a New User you have to add Name, Password and Image.";
-                                    break;
-                            }
-                            echo $error;
+                if ($_SESSION["log_permission"] == 1) {
+                    echo "You have no permission to view this page";
+                } else {
+                    if (isset($_GET["error"])) {
+                        $error = "";
+                        switch ($_GET["error"]) {
+                            case 0:
+                                $error = "Successfully changed account.";
+                                break;
+                            case 1:
+                                $error = "Nothing has changed.";
+                                break;
+                            case 2:
+                                $error = "The image must be smaller than 1MB and must be JPG, JPEG, PNG or GIF format.";
+                                break;
+                            case 3:
+                                $error = "For a New User you have to add Name, Password and Image.";
+                                break;
                         }
-                        ?>
+                        echo $error;
+                    }
+                    ?>
                         <form class="center-this" method="POST" action="img/process.php" enctype="multipart/form-data">
                             <label class="small" for="empo">Select employee</label>
                             <br>
                             <select id="empo" name="user">
                                 <?php
-                                    $SQLConnect = OpenDBConnection();
-                                    $result = SelectDBResult($SQLConnect, "Employee", "*", "Employee_Permission", "1");
-                                    foreach ($result as $key) {
-                                        echo "<option value='" . $key["Employee_ID"] . "'>";
-                                        echo $key["Employee_Name"];
-                                        echo "</option>";
-                                    }
-                                    echo "<option value='new'>";
-                                    echo "Add new user";
-                                    echo "</input>";
+                                $SQLConnect = OpenDBConnection();
+                                $result = SelectDBResult($SQLConnect, "Employee", "*", "Employee_Permission", "1");
+                                foreach ($result as $key) {
+                                    echo "<option value='" . $key["Employee_ID"] . "'>";
+                                    echo $key["Employee_Name"];
+                                    echo "</option>";
+                                }
+                                echo "<option value='new'>";
+                                echo "Add new user";
+                                echo "</input>";
                                 ?>
                             </select>
                             <br><br>
@@ -87,8 +89,9 @@ CheckEmployee();
                             <input type="submit" name="submit" value="Save">
                         </form>
                         <?php
+
                     }
-                ?>
+                    ?>
             </div>
         </div>
     </div>

@@ -19,7 +19,9 @@
     <div class="wrap">
         <div class="header">
             <div class="logo">
-                <img id="logo" src="img/logo.png" alt="Logo">
+                <a href="./overview_client.php">
+                    <img id="logo" src="img/logo.png" alt="Logo">
+                </a>
             </div>
             <div class="navbar">
                 <a href="./input_ticket.php">New Ticket</a> 
