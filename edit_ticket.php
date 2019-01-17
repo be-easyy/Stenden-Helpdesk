@@ -35,6 +35,11 @@
     </div>
 
 <div class="footer">
+<div class="logout_button">
+        <button type="button" class="button button5">
+            <p>Log out</p>
+        </button>
+    </div>
         <div class="footer_margin">
             
         </div>

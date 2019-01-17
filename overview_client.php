@@ -18,11 +18,11 @@
     <div class="wrap">
         <div class="header">
             <div class="logo">
-            <img id="logo" src="img/logo.png" alt="Logo">
+                <img id="logo" src="img/logo.png" alt="Logo">
             </div>
             <div class="navbar">
                 <a href="./input_ticket.php">New Ticket</a> 
-                <a href="./history.php">Ticket History</a> 
+                <a href="./history.php">Ticket History</a>  
                 <a class="open" href="./overview_client.php">Overview</a> 
                 <a href="./client_tickets.php">Your Tickets</a>
                 <a href="./faq.html">FAQ</a>
@@ -54,8 +54,14 @@
     </div>
 
 <div class="footer">
-        <div class="footer_margin">
-        </div>
+    <div class="logout_button">
+        <button type="button" class="button button5">
+            <p>Log out</p>
+        </button>
+    </div>
+    <div class="footer_margin">
+    </div>
+    </div>
     </div>
 </div>
 
