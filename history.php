@@ -41,18 +41,17 @@ if ($result === false) {
     echo "<p>There are no tickets in your name!</p>";
 } else {
     echo "<table>";
-    echo "<tr><th>ID</th> <th>Time Registered</th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution ID</th> <th>Employee ID</th></tr>";
+    echo "<tr><th></th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th></tr>";
     foreach ($result as $value) {
+        $link = "<a href='show_ticket.php?id=" . $value["Incident_ID"] . "'>";
         echo "<tr>";
-        echo "<td>" . $value["Incident_ID"] . "</td>";
-        echo "<td>" . $value["Time_Registered"] . "</td>";
+        echo "<td>" . $link . "Open Ticket</a></td>";
                     //echo "<td>" . $client . "</td>";
         echo "<td>" . $value["Date"] . "</td>";
         echo "<td>" . $value["Description"] . "</td>";
-        echo "<td>" . $value["Type_ID"] . "</td>";
-        echo "<td>" . $value["Solution_ID"] . "</td>";
-        echo "<td>" . $value["Employee_ID"] . "</td>";
-        echo "</tr>";
+        echo "<td>" . GetTypeName($SQLConnect, $value["Type_ID"]) . "</td>";
+        echo "<td>" . GetSolutionByID($SQLConnect, $value["Solution_ID"]) . "</td>";
+        echo "</a></tr>";
     }
     echo "</table>";
 }

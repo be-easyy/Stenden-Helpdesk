@@ -45,7 +45,10 @@ if($result === false) {
     echo "<tr><th></th> <th>Date</th> <th>Description</th> <th>Type</th> <th>Solution</th></tr>";
     foreach ($result as $value) {
         $link = "<a href='show_ticket.php?id=" . $value["Incident_ID"] . "'>";
-        echo "<tr>";
+        $closed = "";
+        if($value["Status_ID"] == 5)
+            $closed = " class='closed-ticket'";
+        echo "<tr" . $closed . ">";
         echo "<td>" . $link . "Open Ticket</a></td>";
                     //echo "<td>" . $client . "</td>";
         echo "<td>" . $value["Date"] . "</td>";
@@ -54,6 +57,7 @@ if($result === false) {
         echo "<td>" . GetSolutionByID($SQLConnect, $value["Solution_ID"]) . "</td>";
         echo "</a></tr>";
     }
+    echo "</table>";
 }
 
 CloseDBConnection($SQLConnect);
