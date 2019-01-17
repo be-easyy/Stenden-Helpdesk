@@ -11,6 +11,7 @@ CheckClient();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         <title>Ticket Submission - Stenden Helpdesk</title>
     </head>
     <body>
@@ -25,7 +26,7 @@ CheckClient();
                 <a href="history.php">Ticket History</a> 
                 <a href="overview_client.php">Overview</a> 
                 <a href="./client_tickets.php">Your Tickets</a>
-                <a href="faq.html">FAQ</a>
+                <a href="./faq.html">FAQ</a><a  class="logout" href="./log_out.php"><i class="fas fa-sign-out-alt"></i></a>
             </div>
         </div>
         <div class="content">

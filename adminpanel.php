@@ -10,6 +10,7 @@ CheckEmployee();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <title>Admin Panel - Stenden Support Desk</title>
 </head>
 <body>
@@ -25,7 +26,7 @@ CheckEmployee();
                 <a href="./history_admin.php">Ticket History</a>
                 <a href="./overview.php">Overview</a> 
                 <a href="./edit_ticket.php">Edit Tickets</a> 
-                <a href="./faq_admin.html">FAQ</a>
+                <a href="./faq_admin.html">FAQ</a><a  class="logout" href="./log_out.php"><i class="fas fa-sign-out-alt"></i></a>
             </div>
         </div>
         <div class="content">
@@ -34,6 +35,24 @@ CheckEmployee();
                     if($_SESSION["log_permission"] == 1) {
                         echo "You have no permission to view this page";
                     } else {
+                        if(isset($_GET["error"])) {
+                            $error = "";
+                            switch ($_GET["error"]) {
+                                case 0:
+                                    $error = "Successfully changed account.";
+                                    break;
+                                case 1:
+                                    $error = "Nothing has changed.";
+                                    break;
+                                case 2:
+                                    $error = "The image must be smaller than 1MB and must be JPG, JPEG, PNG or GIF format.";
+                                    break;
+                                case 3:
+                                    $error = "For a New User you have to add Name, Password and Image.";
+                                    break;
+                            }
+                            echo $error;
+                        }
                         ?>
                         <form class="center-this" method="POST" action="img/process.php" enctype="multipart/form-data">
                             <label class="small" for="empo">Select employee</label>
@@ -47,6 +66,9 @@ CheckEmployee();
                                         echo $key["Employee_Name"];
                                         echo "</option>";
                                     }
+                                    echo "<option value='new'>";
+                                    echo "Add new user";
+                                    echo "</input>";
                                 ?>
                             </select>
                             <br><br>

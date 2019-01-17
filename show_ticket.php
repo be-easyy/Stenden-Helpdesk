@@ -31,7 +31,7 @@ if (!isset($_GET["id"])) {
                         <a href="./history.php">Ticket History</a> 
                         <a href="./overview_client.php">Overview</a> 
                         <a href="./client_tickets.php">Your Tickets</a>
-                        <a href="./faq.html">FAQ</a>
+                        <a href="./faq.html">FAQ</a><a  class="logout" href="./log_out.php"><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
                 <div class="content">

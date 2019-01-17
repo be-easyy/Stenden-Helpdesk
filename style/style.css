@@ -171,9 +171,15 @@ form label{
 	color: white;
 	text-decoration: none;
 	font-size: 19px;
-	width: calc(20% - 30px);
+	width: calc(20% - 34px - 2% / 5);
 	text-align: center;
 	transition-duration: 400ms;
+}
+
+.logout {
+	/*padding: 15px;*/
+	padding: 15px 10px !important;
+	width: 2% !important;
 }
 
 .navbar a:hover {
