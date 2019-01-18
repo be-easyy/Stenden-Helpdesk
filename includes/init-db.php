@@ -98,7 +98,7 @@ if (!$result) {
 
         $query = "INSERT INTO `Employee` (Employee_Name, Employee_Image, Employee_Pass, Employee_Permission)
         VALUES ('admin',
-        'admin.png',
+        'boss.png',
         '$pass',
         '0')";
 

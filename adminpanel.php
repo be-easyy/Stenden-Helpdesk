@@ -62,7 +62,7 @@ CheckEmployee();
                             <select id="empo" name="user">
                                 <?php
                                 $SQLConnect = OpenDBConnection();
-                                $result = SelectDBResult($SQLConnect, "Employee", "*", "Employee_Permission", "1");
+                                $result = SelectDBResult($SQLConnect, "Employee", "*");
                                 foreach ($result as $key) {
                                     echo "<option value='" . $key["Employee_ID"] . "'>";
                                     echo $key["Employee_Name"];

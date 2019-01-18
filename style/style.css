@@ -29,7 +29,7 @@ h3 {
 .page{
 	position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
-	background-color: lightgray;
+	background-color: #d0d0d0;
 	height: auto;
 	z-index: -5;
 }
@@ -51,9 +51,10 @@ h3 {
 	width: 100%;
 	min-width: 527px;
 	height: auto -10%;
-	background-color: #ffffff80;
+	/*background-color: #ffffff80;*/
 	margin: 0 auto;
 	max-height: 960px;
+	padding-bottom: 50px;
 }
 
 .content{
@@ -65,6 +66,7 @@ h3 {
 	overflow: visible;
 	box-shadow: 0 1px 20px #00000020;
 	position: relative;
+	padding-bottom: 50px;
 	border-radius: 3px;
 }
 
@@ -427,6 +429,15 @@ input[type="submit"]:hover {
 	padding-top: 2%;
 }
 
+.ticket_description > img {
+	border-radius: 50%;
+	box-shadow: 0 0 16px #00000040;
+}
+
+.ticket_description > img:hover {
+	animation: spin 800ms linear;
+}
+
 .detailss {
 	width: 350px;
 	height: 340px;
@@ -459,6 +470,22 @@ input[type="submit"]:hover {
 	height: 100px;
 	text-align: center;
 	padding-top: 15px;
+	transition-duration: 200ms;
+}
+
+.details_image > img {
+	border-radius: 50%;
+	box-shadow: 0 0 16px #00000040;
+	object-fit: cover;
+}
+
+.details_image > .profile_image:hover {
+	animation: spin 800ms linear; /*cubic-bezier(0.5, 0, .5, 1)*/
+}
+
+@keyframes spin {
+	0% {transform: rotateY(0deg);}
+	100% {transform: rotateY(360deg);}
 }
 
 .far {

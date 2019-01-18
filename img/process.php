@@ -51,7 +51,7 @@ if(isset($_POST["user"]) && $_POST["user"] == "new") {
     }
 }
 
-if (!empty($_FILES["image"])) {
+if (!empty($_FILES["image"]["name"])) {
     SaveImage($_FILES["image"], $_POST["user"]);
 }
 if (!empty($_POST["em_name"])) {
