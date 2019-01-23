@@ -330,6 +330,29 @@ th, td {
 }
 /*login page END*/
 
+.disclaimer {
+	text-align: center;
+}
+
+.disclaimer_part {
+	width: 100%;
+	color: #555;
+	padding: 5px;
+}
+
+.disclaimer_text {
+	width: 48%;
+	height: 175px;
+	padding-top: 15px;
+	margin: 0 auto;
+}
+
+.disclaimer_feed {
+	width: 100%;
+	height: 420px;
+	background-color: white;
+}
+
 /*FAQ page START*/
 
 .headerfaq {
@@ -345,7 +368,7 @@ th, td {
 	padding: 18px;
 	width: 100%;
 	border: none;
-	text-align: left;
+	text-align: center;
 	outline: none;
 	font-size: 15px;
 	transition: 0.4s;
@@ -362,6 +385,7 @@ th, td {
 	display: none;
 	background-color: #f3f3f3;
 	overflow: hidden;
+	text-align: center;
 }
 
 .panel p{
@@ -438,6 +462,21 @@ input[type="submit"]:hover {
 	animation: spin 800ms linear;
 }
 
+.success {
+	text-align: center;
+}
+
+textarea {
+	width: 30%;
+	height: 100px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	resize: none;
+  }
+
 .detailss {
 	width: 350px;
 	height: 340px;
@@ -456,6 +495,17 @@ input[type="submit"]:hover {
 
 .details_header {
 	width: 50%;
+	height: 50px;
+	padding: 8px;
+	text-align: center;
+	background-color: #4CAF50;
+	color: white;
+	margin: 0 auto;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.details_header1 {
+	width: 20%;
 	height: 50px;
 	padding: 8px;
 	text-align: center;

@@ -38,16 +38,23 @@
                         <h1 class="header_details">My Details</h1>
                     </div> 
                     <div class="details_holder">
-                        <h3>Username:
-                        <?php echo $_SESSION['log_user']; ?></h3>
-                        <h3>Email:
-                        <?php echo $_SESSION['log_email']; ?></h3>
-                        <h3>Phone Number:
-                        <?php echo $_SESSION['log_phone']; ?></h3>
-                        <h3>Function:
-                        <?php echo $_SESSION['log_func']; ?></h3>
-                        <h3>License:
-                        <?php echo $_SESSION['log_license']; ?></h3>
+                        <h2>Username:<h2>
+                        <h3><?php echo $_SESSION['log_user']; ?></h3>
+                        <h2>Email:</h2>
+                        <h3><?php echo $_SESSION['log_email']; ?></h3>
+                        <h2>Phone Number:</h2>
+                        <h3><?php echo $_SESSION['log_phone']; ?></h3>
+                        <h2>Function:</h2>
+                        <h3><?php echo $_SESSION['log_func']; ?></h3>
+                        <h2>License:</h2>
+                        <h3>
+                            <?php 
+                                if($_SESSION['log_license'] == 0) {   
+                                    echo "Maintenance";
+                                }else{
+                                    echo "User";
+                                }
+                            ?>
                     </div>
                 </div>
             </div>

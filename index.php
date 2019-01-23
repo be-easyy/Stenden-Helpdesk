@@ -32,7 +32,11 @@
 					</form>
 				</div>
 			</div>
-		</div>
+			<div class="disclaimer">
+				<div class="disclaimer_part"><a href="disclaimer.html">Disclaimer</a></div>
+				<div class="disclaimer_part"><a href="privacy.html">Privacy Policy</a></div>
+			</div>
+</div>
 	</div>
 </body>
 </html>

@@ -33,8 +33,7 @@ CheckAny();
 
         <div class="content">
             <div class="content_margin">
-            <h1>All Closed Tickets</h1><br/>
-<?php // TODO change type, solution, and employee in table
+<?php
 
 $SQLConnect = OpenDBConnection();
 

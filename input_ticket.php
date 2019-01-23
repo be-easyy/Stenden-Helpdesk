@@ -33,37 +33,33 @@ CheckClient();
         </div>
         <div class="content">
             <div class="content_margin">
-            <h2>Ticket Submission - Stenden Helpdesk</h2>
-        <form method="POST" action="input_ticket.php">
-            <p>Description <input type="text" name="desc" maxlength="2000"></p>
-            <p>Type of Issue  
-            <select name="issue">
-            <option value="1">Technical Problem</option>
-            <option value="2">Functional Problem</option>
-            <option value="3">Failure</option>
-            <option value="4">Question</option>
-            <option value="5">Wish</option>
-            </select></p>
-            <p><input type="submit" name="submit" value="Submit"></p>
-        </form>
-        </div>
-        </div>
-    </div>
-
-<div class="footer">
-        <div class="footer_margin">
-        </div>
-    </div>
+            <div class="detailsss">
+            <div class="details_header1">
+                <h1 class="header_details">Ticket Submission</h1>
+            </div>
+            <div class="details_holder">
+                <form method="POST" action="input_ticket.php">
+                <h2>Description</h2>
+                <p><textarea name="desc" maxlength="2000"></textarea></p>
+                <h2>Type of Issue</h2>
+                <p><select name="issue">
+                <option value="1">Technical Problem</option>
+                <option value="2">Functional Problem</option>
+                <option value="3">Failure</option>
+                <option value="4">Question</option>
+                <option value="5">Wish</option>
+                </select></p>
+                <p><input type="submit" name="submit" value="Submit"></p>
+                </form>
+            </div>
 </div>
-    </body>
-</html>
-
-<?php
-if (isset($_POST['submit'])) {
-    if (empty($_POST['desc']) || empty($_POST['issue'])) {
-        echo "<p>You must fill in all the required elements.
-            Click your browser's back button to return to the message form.</p>";
-    } else {
+            </div>
+            <?php
+        if (isset($_POST['submit'])) {
+        if (empty($_POST['desc']) || empty($_POST['issue'])) {
+        echo "<div class='success'><p>You must fill in all the required elements.
+            Click your browser's back button to return to the message form.</p></div>";
+        } else {
         $SQLConnect = OpenDBConnection();
 
         $id = NewSolution($SQLConnect);
@@ -80,7 +76,7 @@ if (isset($_POST['submit'])) {
             if ($QueryResult2 === false) {
                 DisplayDBError($SQLConnect);
             } else {
-                echo "<h1>Thank you for submitting your ticket!</h1>";
+                echo "<div class='success'><h1>Thank you for submitting your ticket!</h1></div>";
             }
             mysqli_stmt_close($stmt);
         } else {
@@ -90,4 +86,16 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+        </div>
+    </div>
+
+<div class="footer">
+        <div class="footer_margin">
+        </div>
+    </div>
+</div>
+    </body>
+</html>
+
+
 
